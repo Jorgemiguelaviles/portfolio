@@ -1,0 +1,26 @@
+Principal -> volta para o menu superior
+Curriculum -> encaminha para meu CV
+pesquisar -> procura qualquer palavra na tela
+barra com icons rodando de forma infinita
+miniprojetos com pequenas gravações de cada um deles
+meus contatos
+- GitHub
+- LinkedIn
+- Gmail 
+
+html
+css
+js
+react
+php
+laravel
+python
+django
+java
+springboot
+aws
+
+
+
+
+

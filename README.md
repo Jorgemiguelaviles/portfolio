@@ -1,50 +1,18 @@
-# React + TypeScript + Vite
+# portfólio e projetos 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descrição
+O portfólio é a forma na qual eu encontrei para demostrar meus projetos construidos e aprimorados de uma forma na qual venha trazer a atenção dos recrutadores para os meus projetos e minhas capacidades técnincas de desenvolvimento de sistemas, o mesmo ira vir ser construido com técnologia React e tera projetos com diversos formatos, dando destaque aos dominios de algumas linguagens nas quais eu tenho conhecimento e estou em busca constante de me desenvolver e evoluir sendo as principais, React, Laravel, Django e SpringBoot, sendo a ultima com projetos nas quais serão adicionados mais na frente
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Como startar
+[Instalação]
+1. git clone (url)
+2. cd (até a pagina aonde você baixou o portfolio)
+3. npm install
+4. npm run dev
 
-## Expanding the ESLint configuration
+[Contribuição]
+1. LucasdeSDuarte
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
