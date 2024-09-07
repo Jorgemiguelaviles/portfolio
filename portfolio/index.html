@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style/reset.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="./style/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <title>Portfolio</title>
+</head>
+<body>
+    <header class="cabecalho">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                <img class="logotipo" src='./imgs/jorgetech.png' />
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <button class="nav-link active text-light" aria-current="page">
+                        Principal
+                    </button>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-light" href="#">Curriculum</a>
+                  </li>
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+                  <button class="btn btn-outline-light" type="submit">Pesquisar</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    <section class="start">
+        <div class="background-section">
+            <video class="video" src="./videos/backgorundSpace.mp4" autoplay loop muted></video>
+            <div class="gradient-overlay"></div>
+
+            <div class="text-layer">
+                <h1 class="typing-effect">Jorge Miguel Aviles de Moura</h1>
+                <div class="button-layer">
+                    <button id="explore-button" class="custom-button">Explore</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="new-section" class="new-section">
+        <div class="bio">
+            <div>
+                <h1 class="typing-effect">Biografia</h1>
+            </div>
+            <div class="direction">
+                <div class="text-container">
+                    <p>
+                        Sou Jorge Miguel Aviles de Moura, desenvolvedor full-stack apaixonado por transformar ideias em soluções reais. Com uma abordagem focada em inovação e eficiência, busco sempre entregar o melhor em cada projeto.
+                    </p>                    
+                </div>
+                <img src="./imgs/foto.jpg" class="foto img-container">
+            </div>
+        </div>
+        <div class="ship" id="ship"></div>
+        <div class="skills">
+            <div class="softskills">
+                <div class="skill-item">
+                    <h2>Comunicação Assertiva</h2>
+                    <p>Durante minha experiência em vendas, aprendi a importância da comunicação assertiva. É essencial transmitir informações de maneira clara e eficaz, garantindo que a mensagem seja compreendida como pretendido.</p>
+                </div>
+                <div class="skill-item">
+                    <h2>Proatividade</h2>
+                    <p>Ser proativo é essencial para antecipar problemas e criar soluções antes que se tornem críticos. Esta habilidade me ajudou a identificar oportunidades e a atuar de forma a melhorar continuamente os processos e resultados.</p>
+                </div>
+                <div class="skill-item">
+                    <h2>Visão de Negócio</h2>
+                    <p>Desenvolvi uma visão de negócio ao compreender que ser um desenvolvedor envolve mais do que resolver problemas técnicos. É crucial entender o impacto que cada linha de código pode ter na vida das pessoas e como isso pode influenciar o cotidiano delas.</p>
+                </div>
+                <div class="skill-item">
+                    <h2>Empatia</h2>
+                    <p>A empatia é crucial para entender as reais necessidades dos clientes. Ao se colocar no lugar deles, é possível criar soluções mais eficazes e alinhadas com suas expectativas e necessidades.</p>
+                </div>
+                <div class="skill-item">
+                    <h2>Inteligência Emocional</h2>
+                    <p>Gerenciar a inteligência emocional é fundamental ao lidar com projetos sob pressão. Manter a calma e a clareza emocional afeta diretamente a qualidade das decisões e o bem-estar geral.</p>
+                </div>
+                <div class="skill-item">
+                    <h2>Resiliência</h2>
+                    <p>Ser resiliente é essencial para enfrentar desafios e superar obstáculos. Essa habilidade permite adaptar-se às mudanças e encontrar soluções criativas em situações de pressão.</p>
+                </div>
+            </div>
+            
+            <div class="hardskills">
+
+            </div>
+        </div>       
+    </section>
+    
+    
+
+    <footer>
+        <!-- Footer content here -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="./js/vozRobotizada.js"></script>
+    <script src="./js/newSection.js"></script>
+    <script src="./js/rolagem.js"></script>
+    <script src="./js/inview.js"></script>
+</body>
+</html>
