@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+.new-section {
+    background-color: #000;
+    color: #fff;
+    align-items: center;
+    justify-content: center; 
+    padding: 50px 20px;
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: auto; 
+    text-align: center; 
+    overflow: hidden;
+}
+
+.text-container {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+.img-container {
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+.new-section.animate .img-container {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.new-section.animate .text-container {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.bio {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.direction {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.direction p {
+    flex: 1;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.direction div {
+    width: 30%;
+}
+
+.foto {
+    max-width: 500px;
+    height: 20rem;
+}
+
+.skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+.new-section.animate .skills {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.softskills {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 50px;
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}

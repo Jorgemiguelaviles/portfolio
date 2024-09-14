@@ -1,11 +1,17 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../style/style.css';
-import { Button, Container } from 'react-bootstrap';
-import backVideo from '../videos/backgorundSpace.mp4'
-import {handleExploreButtonClick} from '../hooks/newSection'
+import '../style/iniciation.css';
+import { Button } from 'react-bootstrap';
+import backVideo from '../videos/backgorundSpace.mp4';
+import { useNavigate } from 'react-router-dom';
 
 const SectionStart: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleExploreClick = () => {
+    navigate('/content'); // Navega para a página ContenteMain
+  };
+
   return (
     <section className="start">
       <div className="background-section">
@@ -15,9 +21,13 @@ const SectionStart: React.FC = () => {
         <div className="text-layer">
           <h1 className="typing-effect">Jorge Miguel Aviles de Moura</h1>
           <div className="button-layer">
-            <Button id="explore-button" className="custom-button" onClick={handleExploreButtonClick} >
+            <button 
+              id="explore-button" 
+              className="custom-button" 
+              onClick={handleExploreClick}
+            >
               Explore
-            </Button>
+            </button>
           </div>
         </div>
       </div>

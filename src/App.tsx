@@ -1,18 +1,22 @@
+// src/App.tsx
 import React from 'react';
-import HomePage from './pages/main/index';
-import SectionStart from './components/SectionStart'
-import SectionBio from './components/SectionSkiils'
-import useSpeechSynthesis from './hooks/vozRobotizada';
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet"></link>
-function App() {
-  
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Intro from './pages/iniciation';
+import ContenteMain from './pages/conteentMain';
 
+function App() {
   return (
-    <>
-      <HomePage />
-      <SectionStart />
-      <SectionBio />
-    </>
+    <Router>
+      <div className="App">
+        <Routes>
+          {/* Define a rota para o componente Intro */}
+          <Route path="/" element={<Intro />} />
+
+          {/* Define a rota para o componente ContenteMain */}
+          <Route path="/content" element={<ContenteMain />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

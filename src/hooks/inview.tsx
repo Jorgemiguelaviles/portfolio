@@ -16,5 +16,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('scroll', checkVisibility);
-    checkVisibility(); // Verifica visibilidade ao carregar a página
+    checkVisibility();
 });

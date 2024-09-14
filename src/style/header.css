@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+.cabecalho {
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0), rgb(114, 65, 127));
+    position: fixed;
+    top:0;
+    z-index:1000;
+}
+.cabecalho .navbar {
+    background: linear-gradient(rgba(0, 0, 0), rgb(114, 65, 127));
+}
+
+.cabecalho .container-fluid{
+    background: linear-gradient(rgba(0, 0, 0), rgb(114, 65, 127));
+}
+
+
+.logotipo{
+    height: 5rem;
+    width: 5rem;
+}
