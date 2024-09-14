@@ -1,6 +1,6 @@
 // src/pages/index.tsx
 import React from 'react';
-import HomePageProps from '../../components/rendenization';
+import HomePageProps from '../../components/Rendenization';
 import Header from '../../components/Header';
 import SectionBioSection from '../../components/SectionSkiils';
 

@@ -1,6 +1,0 @@
-pesquisar -> procura qualquer palavra na tela
-o problema da altura foi resolvido porem agora estamos tendo problemas com a animação do botão ele não esta apareecendo o botão explorar
-e temos problema tambem com a animação dos textos nas quais não eestão sendo trazidos e nem a imagem esta sendo trazida para o meio da tela
-(problemas de transicitions css) 
-
-criar um componente bonito obvio na qual ira rendenizar os videos de meus projetos trabalhados até o momento

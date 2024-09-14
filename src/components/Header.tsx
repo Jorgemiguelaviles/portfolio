@@ -47,17 +47,6 @@ const Header: React.FC = () => {
                                 Curriculum
                             </Button>
                         </Nav>
-                        <Form className="d-flex">
-                            <FormControl
-                                type="search"
-                                placeholder="Pesquisar"
-                                className="me-2"
-                                aria-label="Search"
-                            />
-                            <Button variant="outline-light" type="submit">
-                                Pesquisar
-                            </Button>
-                        </Form>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
