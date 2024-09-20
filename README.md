@@ -51,9 +51,6 @@ Ao desenvolver este portfólio, tive a oportunidade de:
 Aperfeiçoar o uso de React e TypeScript para construção de interfaces escaláveis.
 Explorar animações e efeitos em CSS 3D, elevando o design e a experiência do usuário.
 Organizar meus projetos de forma mais visual e profissional, apresentando o que há de mais relevante no meu trabalho.
-🖼️ Prévia do Projeto
-
-(Adicione aqui uma imagem do portfólio em funcionamento)
 
 🚧 Melhorias Futuras
 Design Responsivo: O portfólio foi projetado para ser completamente responsivo, garantindo uma boa experiência de navegação tanto em desktops quanto em dispositivos móveis.
