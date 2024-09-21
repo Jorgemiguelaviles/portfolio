@@ -53,10 +53,8 @@ Explorar animações e efeitos em CSS 3D, elevando o design e a experiência do 
 Organizar meus projetos de forma mais visual e profissional, apresentando o que há de mais relevante no meu trabalho.
 
 🚧 Melhorias Futuras
-Design Responsivo: O portfólio foi projetado para ser completamente responsivo, garantindo uma boa experiência de navegação tanto em desktops quanto em dispositivos móveis.
 Finalização dos Projetos RPG_JAVA e Marcador de Consultas: Completar o desenvolvimento desses dois sistemas para adicionar ao portfólio.
 Melhoria viajem espacial: Interação com menu de ida e vinda de uma nave entre minhas tasks, como se o usuário viesse estar viajando entre planetas
-Adição entre em contato: links direto para meu github, gmail e linkedin para poder entrar em contato comigo
 
 🤝 Contribuições
 Se você tiver sugestões de como melhorar o portfólio ou quiser colaborar em algum projeto, sinta-se à vontade para entrar em contato!
