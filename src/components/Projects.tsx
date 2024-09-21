@@ -1,6 +1,6 @@
 import React from 'react';
 import Bio from './bio';
-import ProjectStart from './projetosStart';
+import ProjectStart from './ProjetosStart';
 import '../style/contentMain.css';
 import video from '../videos/backgorundSpace.mp4'
 import Contacts from './Contacts'

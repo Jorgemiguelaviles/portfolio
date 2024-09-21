@@ -1,15 +1,10 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/iniciation.css';
-import { useNavigate } from 'react-router-dom';
 import foto from '../assets/imgs/foto.jpg';
 
 const Bio: React.FC = () => {
-  const navigate = useNavigate();
-
-  const handleExploreClick = () => {
-    navigate('/content'); // Navega para a página ContentMain
-  };
+  
 
   return (
     <div className="bio">
