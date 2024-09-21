@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaPhp, FaPython, FaJava, FaLinux, FaDocker } from 'react-icons/fa';
 import { DiLaravel } from 'react-icons/di';
 import { SiDjango, SiSpringboot, SiAmazon, SiMysql } from 'react-icons/si';
-import '../style/style.css';
+import '../style/hardSkills.css';
 
 const HardSkills: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);

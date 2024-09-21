@@ -1,10 +1,9 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/header.css';
-import { Navbar, Nav, Form, FormControl, Button, Container } from "react-bootstrap";
+import { Navbar, Nav, Button, Container } from "react-bootstrap";
 import jorgetech from '../assets/imgs/jorgetech.png';
 import { useNavigate } from 'react-router-dom';
-import curriculum from '../curriculum/cv.txt'; 
 
 const Header: React.FC = () => {
     const navigate = useNavigate();
@@ -13,13 +12,8 @@ const Header: React.FC = () => {
       navigate('/');
     };
 
-    const handleDownloadCVClick = () => {
-        const a = document.createElement('a');
-        a.href = curriculum;
-        a.download = 'curriculo.txt';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+    const handleViewCVClick = () => {
+        window.open('/curriculum/CV.docx', '_blank');
     };
 
     return (
@@ -42,9 +36,9 @@ const Header: React.FC = () => {
                             <Button 
                                 id="explore-button" 
                                 className="custom-button me-2" 
-                                onClick={handleDownloadCVClick}
+                                onClick={handleViewCVClick}
                             >
-                                Curriculum
+                                Baixar curriculum
                             </Button>
                         </Nav>
                     </Navbar.Collapse>

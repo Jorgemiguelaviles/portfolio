@@ -1,0 +1,25 @@
+.spaceItens {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.styleLink {
+    background-color: transparent;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.styleLink:hover {
+    transform: scale(1.1);
+}
+
+.styleItem {
+    height: 3rem;
+    width: 3rem;
+    color: rgb(107, 61, 119);
+}
+
+.styleItem:hover {
+    color: rgb(107, 61, 119);
+}

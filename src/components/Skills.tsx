@@ -3,8 +3,8 @@ import SectionBio from './softsSkillComponents';
 import HardSkills from './hardSkills';
 import Bio from './bio';
 import '../style/contentMain.css';
+import Contacts from './Contacts'
 
-// Definindo o tipo para as props do componente SkillsSection
 interface SkillsSectionProps {
   isRotated: boolean;
   handleRotation: () => void;
@@ -53,6 +53,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isRotated, handleRotation
       <button className="rotate-button" onClick={handleRotation}>
         {isRotated ? 'Mostrar Soft Skills' : 'Mostrar Projetos'}
       </button>
+      <div>
+        {<Contacts />}
+      </div>
     </div>
   );
 };

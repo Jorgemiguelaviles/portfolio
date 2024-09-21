@@ -3,7 +3,7 @@ import Bio from './bio';
 import ProjectStart from './projetosStart';
 import '../style/contentMain.css';
 import video from '../videos/backgorundSpace.mp4'
-
+import Contacts from './Contacts'
 
 interface ProjectsProps {
   isRotated: boolean;
@@ -58,6 +58,9 @@ const Projects: React.FC<ProjectsProps> = ({ isRotated, handleRotation }) => {
       <button className="rotate-button" onClick={handleRotation}>
         {isRotated ? 'Mostrar Soft Skills' : 'Mostrar Projetos'}
       </button>
+      <div>
+        {<Contacts />}
+      </div>
     </div>
   );
 };

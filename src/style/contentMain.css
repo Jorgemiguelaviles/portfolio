@@ -10,7 +10,7 @@
   text-align: center;
   overflow: hidden;
   position: relative;
-  height: 380vh;
+  height: 300vh; /* Pode ser ajustado dependendo do conteúdo */
 }
 
 .bio {
@@ -45,7 +45,7 @@
 .box {
   position: relative;
   width: 100%;
-  height: 100%; /* Ajustado para a altura da seção */
+  height: 100%;
   perspective: 1000px;
   margin-top: 2rem;
 }
@@ -60,7 +60,7 @@
 }
 
 .boxContent.rotate {
-  transform: rotateX(180deg); /* Rotação de 180 graus no eixo X */
+  transform: rotateX(180deg);
 }
 
 .skills, .projects {
@@ -77,11 +77,11 @@
 }
 
 .skills {
-  transform: rotateX(0deg); /* Mostra o conteúdo frontal */
+  transform: rotateX(0deg);
 }
 
 .projects {
-  transform: rotateX(180deg); /* Mostra o conteúdo de trás */
+  transform: rotateX(180deg);
 }
 
 .skills h1, .projects h1 {
@@ -113,8 +113,49 @@
   transition: all 0.3s ease;
 }
 
-
 .rotate-button:hover {
   background-color: white;
   color: black;
+}
+
+/* Media Queries para dispositivos móveis */
+@media (max-width: 768px) {
+  .new-section {
+    padding: 30px 10px; /* Reduzir o padding em telas menores */
+    height: 250rem; /* Ajusta a altura */
+  }
+
+  .direction {
+    flex-direction: column; /* Muda a direção para coluna em telas pequenas */
+    align-items: flex-start; /* Alinha os itens à esquerda */
+  }
+
+  .direction p {
+    margin-right: 0; /* Remove a margem direita */
+    margin-bottom: 10px; /* Adiciona espaço abaixo */
+    font-size: 18px; /* Ajusta o tamanho da fonte */
+  }
+
+  .direction div {
+    width: 100%; /* Faz com que os divs ocupem toda a largura */
+  }
+
+  .foto {
+    max-width: 90%; /* Reduz a largura máxima da imagem */
+    height: auto; /* Permite que a altura seja ajustada automaticamente */
+  }
+
+  .rotate-button {
+    font-size: 1rem; /* Ajusta o tamanho da fonte do botão */
+    padding: 8px 16px; /* Ajusta o padding do botão */
+  }
+
+  .softskills {
+    padding: 30px; /* Ajusta o padding */
+  }
+}
+@media (max-width: 500px) {
+  .new-section {
+    height: 290rem; /* Ajusta a altura */
+  }
 }
