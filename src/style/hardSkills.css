@@ -4,10 +4,10 @@
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 70vh;
+  height: 40vh;
   width: 100vw;
   background-color: black;
-  margin: 0 2rem;
+  margin: 0 0 20rem 0;
 }
 
 .wheel {

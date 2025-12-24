@@ -1,49 +1,82 @@
 .project-container {
-  margin-top: 2rem;
   position: relative;
-  width: 800px;
-  height: 300px;
-  text-align: center;
-  background-color: #000;
-  border: 2px solid #fff;
+  width: 350px;
+  height: 250px;
+  background: black;
   overflow: hidden;
-  box-sizing: border-box;
+  border-radius: 10px;
 }
-
-.project-title {
-  margin: 10px 0;
-  color: #fff;
-}
-
-.icon-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  z-index: 1;
-}
-
-.icon {
-  cursor: pointer;
-  color: #fff;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  padding: 10px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.video {
+/* PORTA ESQUERDA */
+.project-container::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(135deg, #5f4e64, #c800ff, #5f4e64);
+  z-index: 5;
+
+  transform: translateX(0);
+  transition: transform 0.9s ease-in-out;
+}
+
+/* PORTA DIREITA */
+.project-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(135deg, #5f4e64, #c800ff, #5f4e64);
+  z-index: 5;
+
+  transform: translateX(0);
+  transition: transform 0.9s ease-in-out;
+}
+
+/* Quando abrir */
+.project-container.opening-door::before {
+  transform: translateX(-100%);
+}
+
+.project-container.opening-door::after {
+  transform: translateX(100%);
+}
+
+/* Quando fechar */
+.project-container.closing-door::before {
+  transform: translateX(0);
+}
+
+.project-container.closing-door::after {
+  transform: translateX(0);
+}
+
+/* Conteúdo */
+.icon-container {
+  z-index: 10;
+  position: relative;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+/* Vídeo */
+.video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 0;
-  transition: opacity 0.3s ease;
-  background: no-repeat center center;
-  background-size: cover;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.video.visible {
+  opacity: 1;
 }

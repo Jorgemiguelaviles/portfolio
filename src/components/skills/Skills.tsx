@@ -1,9 +1,6 @@
 import React from 'react';
 import SectionBio from './softsSkillComponents';
 import HardSkills from './hardSkills';
-import Bio from './bio';
-import '../style/contentMain.css';
-import Contacts from './Contacts'
 
 interface SkillsSectionProps {
   isRotated: boolean;
@@ -40,7 +37,6 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isRotated, handleRotation
 
   return (
     <div className="skills">
-      <Bio />
       <h1>Soft Skills</h1>
       <div className="softskills">
         {skills.map((skill, index) => (
@@ -50,12 +46,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ isRotated, handleRotation
       <div className="hardskills">
         <HardSkills />
       </div>
-      <button className="rotate-button" onClick={handleRotation}>
+        <button className="rotate-button" onClick={handleRotation}>
         {isRotated ? 'Mostrar Soft Skills' : 'Mostrar Projetos'}
       </button>
-      <div>
-        {<Contacts />}
-      </div>
     </div>
   );
 };

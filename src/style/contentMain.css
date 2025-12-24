@@ -1,161 +1,274 @@
+/* ================= VARIÁVEIS HOLOGRÁFICAS ================= */
+:root {
+  --holo-blue: rgba(120, 190, 255, 0.85);
+  --holo-cyan: rgba(80, 255, 255, 0.75);
+  --holo-soft: rgba(120, 190, 255, 0.25);
+}
+
+/* ================= CONTAINER PRINCIPAL ================= */
+.container-main {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================= SETAS DE NAVEGAÇÃO ================= */
+.nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+
+  color: var(--holo-cyan);
+  background: linear-gradient(
+    135deg,
+    rgba(10, 40, 80, 0.8),
+    rgba(0, 10, 30, 0.9)
+  );
+
+  border: 1px solid var(--holo-blue);
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+
+  cursor: pointer;
+  z-index: 15;
+
+  box-shadow:
+    0 0 12px rgba(120, 200, 255, 0.6),
+    inset 0 0 12px rgba(120, 200, 255, 0.25);
+
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.nav-arrow:hover {
+  transform: translateY(-50%) scale(1.2);
+  box-shadow:
+    0 0 24px rgba(120, 220, 255, 0.9),
+    inset 0 0 18px rgba(120, 220, 255, 0.45);
+}
+
+.nav-arrow.left { left: 20px; }
+.nav-arrow.right { right: 20px; }
+
+/* ================= SEÇÃO PRINCIPAL ================= */
 .new-section {
-  background-color: #000;
-  color: #fff;
-  align-items: center;
-  justify-content: center;
-  padding: 50px 20px;
-  font-family: 'Orbitron', sans-serif;
   display: flex;
-  flex-direction: column;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+  padding: 20px;
+
+  background: radial-gradient(
+    ellipse at center,
+    #081020 0%,
+    #03050a 70%
+  );
+
   overflow: hidden;
   position: relative;
-  height: 300vh; /* Pode ser ajustado dependendo do conteúdo */
 }
 
-.bio {
+/* ================= PAINEL HOLOGRÁFICO ================= */
+.ship-panel {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-}
 
-.direction {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  margin-top: 20px;
-}
+  width: 80vw;
+  height: 80vh;
+  max-width: 1300x;
+  max-height: 800px;
 
-.direction p {
-  flex: 1;
-  font-size: 20px;
-  margin-right: 20px;
-}
+  background: linear-gradient(
+    180deg,
+    rgba(80, 180, 255, 0.18),
+    rgba(10, 40, 80, 0.35)
+  );
 
-.direction div {
-  width: 30%;
-}
+  border: 1px solid rgba(120, 200, 255, 0.55);
+  border-radius: 10px;
 
-.foto {
-  max-width: 500px;
-  height: 20rem;
-}
+  box-shadow:
+    0 0 35px rgba(120, 200, 255, 0.45),
+    inset 0 0 30px rgba(120, 200, 255, 0.25);
 
-.box {
+  backdrop-filter: blur(2px);
+
+  padding: 20px;
   position: relative;
-  width: 100%;
-  height: 100%;
-  perspective: 1000px;
-  margin-top: 2rem;
+  overflow: hidden;
+
+  color: #cbd7ff;
+  opacity: 0.92;
+
+  animation:
+    revealPanel 1.8s forwards ease-in-out,
+    holoFloat 6s infinite ease-in-out;
 }
 
-.boxContent {
+/* ================= REVELAÇÃO DO HOLOGRAMA ================= */
+@keyframes revealPanel {
+  0% {
+    clip-path: inset(50% 50% 50% 50%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0% 0% 0% 0%);
+    opacity: 1;
+  }
+}
+
+/* ================= FLUTUAÇÃO HOLOGRÁFICA ================= */
+@keyframes holoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+}
+
+/* ================= SCANLINES LASER ================= */
+.ship-panel::before {
+  content: '';
   position: absolute;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transform: rotateX(0deg);
-  transition: transform 2000ms ease-in-out;
+  inset: 0;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(120, 220, 255, 0.15),
+    rgba(120, 220, 255, 0.15) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 2;
+
+  animation: scanMove 4s linear infinite;
 }
 
-.boxContent.rotate {
-  transform: rotateX(180deg);
+@keyframes scanMove {
+  from { background-position-y: 0; }
+  to { background-position-y: 100%; }
 }
 
-.skills, .projects {
+/* ================= RUÍDO HOLOGRÁFICO ================= */
+.ship-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,0.03),
+    rgba(255,255,255,0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+
+  opacity: 0.25;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ================= ÁREAS DO PAINEL ================= */
+.panel-left,
+.panel-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel-center {
+  flex: 2;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  color: #fff;
-  position: absolute;
-  backface-visibility: hidden;
+  padding: 2rem;
+
+  text-align: center;
+  position: relative;
+  z-index: 4;
+
+  animation: hologramFlicker 4s infinite ease-in-out;
 }
 
-.skills {
-  transform: rotateX(0deg);
+/* ================= FLICKER HOLOGRÁFICO ================= */
+@keyframes hologramFlicker {
+  0%, 100% { opacity: 1; }
+  47% { opacity: 0.85; }
+  50% {
+    opacity: 0.65;
+    transform: translateY(1px);
+  }
+  53% {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
 }
 
-.projects {
-  transform: rotateX(180deg);
+/* ================= AVATAR ================= */
+.panel-avatar {
+  width: 120px;
+  height: 120px;
+
+  border-radius: 50%;
+  border: 1.5px solid var(--holo-blue);
+
+  box-shadow:
+    0 0 20px rgba(120, 220, 255, 0.7),
+    0 0 40px rgba(120, 220, 255, 0.35);
+
+  filter:
+    drop-shadow(0 0 12px rgba(120, 220, 255, 0.9))
+    brightness(1.15)
+    saturate(1.2);
+
+  opacity: 0.9;
 }
 
-.skills h1, .projects h1 {
-  margin-bottom: 20px;
+/* ================= LOGO ================= */
+.panel-logo {
+  width: 180px;
+  margin-bottom: 16px;
+
+  filter:
+    drop-shadow(0 0 12px rgba(120, 220, 255, 0.9))
+    brightness(1.15);
+
+  animation: pulseLogo 2s infinite alternate;
 }
 
-.softskills {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 50px;
-  background-color: #000;
-  color: #fff;
-  width: 100%;
+@keyframes pulseLogo {
+  from {
+    filter: drop-shadow(0 0 6px rgba(120, 220, 255, 0.6));
+  }
+  to {
+    filter: drop-shadow(0 0 24px rgba(120, 220, 255, 1));
+  }
 }
 
-.hardskills {
-  margin-top: 20px;
-}
-
-.rotate-button {
-  padding: 10px 20px;
-  border: 2px solid white;
-  background-color: transparent;
-  color: white;
-  font-size: 1.2rem;
+/* ================= TEXTO HOLOGRÁFICO ================= */
+.panel-title {
+  font-size: 2.5rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  margin-bottom: 20px;
+
+  color: var(--holo-cyan);
+  text-shadow:
+    0 0 8px rgba(120, 220, 255, 0.8),
+    0 0 20px rgba(120, 220, 255, 0.4);
 }
 
-.rotate-button:hover {
-  background-color: white;
-  color: black;
-}
+.panel-text {
+  font-size: 1.8rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
 
-/* Media Queries para dispositivos móveis */
-@media (max-width: 768px) {
-  .new-section {
-    padding: 30px 10px; /* Reduzir o padding em telas menores */
-    height: 250rem; /* Ajusta a altura */
-  }
-
-  .direction {
-    flex-direction: column; /* Muda a direção para coluna em telas pequenas */
-    align-items: flex-start; /* Alinha os itens à esquerda */
-  }
-
-  .direction p {
-    margin-right: 0; /* Remove a margem direita */
-    margin-bottom: 10px; /* Adiciona espaço abaixo */
-    font-size: 18px; /* Ajusta o tamanho da fonte */
-  }
-
-  .direction div {
-    width: 100%; /* Faz com que os divs ocupem toda a largura */
-  }
-
-  .foto {
-    max-width: 90%; /* Reduz a largura máxima da imagem */
-    height: auto; /* Permite que a altura seja ajustada automaticamente */
-  }
-
-  .rotate-button {
-    font-size: 1rem; /* Ajusta o tamanho da fonte do botão */
-    padding: 8px 16px; /* Ajusta o padding do botão */
-  }
-
-  .softskills {
-    padding: 30px; /* Ajusta o padding */
-  }
-}
-@media (max-width: 500px) {
-  .new-section {
-    height: 290rem; /* Ajusta a altura */
-  }
+  color: rgba(180, 230, 255, 0.85);
+  text-shadow:
+    0 0 6px rgba(120, 200, 255, 0.4);
 }

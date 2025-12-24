@@ -1,0 +1,77 @@
+/* ================= FOOTER NAVE ================= */
+
+/* Painel fixo inferior da nave */
+.nave-panel-top {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+/* Estrutura metálica do painel da nave */
+.nave-panel-frame {
+  background: linear-gradient(
+    180deg,
+    #0b0f14 0%,
+    #121923 40%,
+    #0a0d12 100%
+  );
+  border-top: 1px solid rgba(120, 180, 255, 0.25);
+  box-shadow:
+    0 -10px 30px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Orbitron", system-ui, sans-serif;
+  letter-spacing: 0.12em;
+}
+
+/* Indicadores de sistema da nave */
+.nave-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2a3b55;
+  box-shadow: 0 0 6px rgba(42, 59, 85, 0.6);
+  margin-right: 10px;
+}
+
+.nave-indicator.active {
+  background: #4cc9f0;
+  box-shadow: 0 0 12px rgba(76, 201, 240, 0.9);
+}
+
+/* Links do painel da nave */
+.nave-panel-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nave-panel-links a {
+  color: #8fbcd4;
+  font-size: 0.75rem;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nave-panel-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 1px;
+  background: #4cc9f0;
+}
+
+.nave-panel-links a:hover {
+  color: #e6f6ff;
+}
+
+.nave-panel-links a:hover::after {
+  width: 100%;
+}

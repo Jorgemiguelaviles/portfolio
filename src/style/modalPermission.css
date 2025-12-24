@@ -1,0 +1,36 @@
+.audio-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 7, 13, 0.92);
+  backdrop-filter: blur(6px);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.audio-modal {
+  background: linear-gradient(145deg, #0b1020, #121826);
+  border: 1px solid rgba(120,180,255,0.3);
+  border-radius: 12px;
+  padding: 40px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  color: #cbd7ff;
+  box-shadow: 0 0 40px rgba(120,180,255,0.15);
+}
+
+.audio-modal h2 {
+  color: #8fbaff;
+  margin-bottom: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.audio-modal p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  color: #cbd7ff;
+}

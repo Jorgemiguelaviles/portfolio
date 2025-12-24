@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Intro from './pages/iniciation';
-import ContenteMain from './pages/conteentMain';
+import SectionStart from './pages';
 
 function App() {
   return (
@@ -8,10 +7,7 @@ function App() {
       <div className="App">
         <Routes>
           {/* Define a rota para o componente Intro */}
-          <Route path="/" element={<Intro />} />
-
-          {/* Define a rota para o componente ContenteMain */}
-          <Route path="/content" element={<ContenteMain />} />
+          <Route path="/" element={<SectionStart />} />
         </Routes>
       </div>
     </Router>

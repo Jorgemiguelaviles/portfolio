@@ -1,9 +1,6 @@
 import React from 'react';
-import Bio from './bio';
 import ProjectStart from './ProjetosStart';
-import '../style/contentMain.css';
 import video from '../videos/backgorundSpace.mp4'
-import Contacts from './Contacts'
 
 interface ProjectsProps {
   isRotated: boolean;
@@ -46,8 +43,8 @@ const Projects: React.FC<ProjectsProps> = ({ isRotated, handleRotation }) => {
 
   return (
     <div className="projects" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-        <Bio />
-      {projects.map((project, index) => (
+      <div className="video-projects">
+        {projects.map((project, index) => (
         <ProjectStart
           key={index}
           githubLink={project.githubLink}
@@ -55,12 +52,11 @@ const Projects: React.FC<ProjectsProps> = ({ isRotated, handleRotation }) => {
           title={project.title}
         />
       ))}
+      </div>
+
       <button className="rotate-button" onClick={handleRotation}>
         {isRotated ? 'Mostrar Soft Skills' : 'Mostrar Projetos'}
       </button>
-      <div>
-        {<Contacts />}
-      </div>
     </div>
   );
 };
