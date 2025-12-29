@@ -1,0 +1,14 @@
+.video-projects {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  height: 100vh;        /* ocupa a altura da tela */
+  overflow-y: auto;    /* permite deslizar no eixo Y */
+  overflow-x: hidden;  /* evita scroll lateral indesejado */
+
+  padding: 24px 0;     /* respiro para o primeiro e último item */
+}

@@ -31,7 +31,7 @@ import { FaLinux } from 'react-icons/fa';
 // Inteligência Artificial
 import { SiOpenai } from 'react-icons/si';
 
-import '../style/hardSkills.css';
+import '../../style/skills/hardSkills.css';
 
 const HardSkills: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);

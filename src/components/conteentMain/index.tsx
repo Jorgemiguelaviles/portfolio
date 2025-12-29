@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import HomePageProps from "./rendenization";
-import SectionBioSection from "../biografia/SectionBio";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import "../../style/contentMain.css";
+import "../../style/conteentMain/contentMain.css";
+import Projects from "../projects/Projects"
+import SkillsSection from "../skills/Skills"
 
 interface ContenteMainProps {
   mainPage: boolean;
@@ -15,8 +16,6 @@ const ContenteMain: React.FC<ContenteMainProps> = ({ mainPage }) => {
 
   useEffect(() => {
     if (!mainPage) {
-      // 1️⃣ componente já está montado aqui
-      // espera um frame + delay consciente
       const timer = setTimeout(() => {
         controls.start({
           opacity: 1,
@@ -79,7 +78,7 @@ const ContenteMain: React.FC<ContenteMainProps> = ({ mainPage }) => {
             <div className={`ship-panel ${powerOn ? "panel-on" : ""}`}>
               <div className="container-main">
                 <HomePageProps
-                  SectionStartComponent={<SectionBioSection />}
+                  SectionStartComponent={<SkillsSection />}
                 />
                 {Arrows}
               </div>

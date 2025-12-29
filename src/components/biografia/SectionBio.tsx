@@ -1,5 +1,5 @@
 import React from 'react';
-import jorgetech from '../assets/imgs/foto.png';
+import jorgetech from '../../assets/imgs/foto.png';
 
 
 const SectionBioSection: React.FC = () => {

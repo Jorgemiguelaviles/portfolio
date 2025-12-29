@@ -2,8 +2,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import jorgetech from "../assets/imgs/jorgetech.png";
-import "../style/header-nave.css";
+import jorgetech from "../../assets/imgs/jorgetech.png";
+import "../../style/headers/header-nave.css";
 
 interface HeaderNaveProps {
   mainPage: boolean;

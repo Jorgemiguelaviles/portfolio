@@ -1,0 +1,7 @@
+segunda
+- finzalizar painel softskills
+- finalizar painel hardskills
+
+terca
+- ajustar transições visuais
+- ajustar transições de som

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import defaultBackground from "../assets/imgs/base-intergalatica.png";
-import "../style/iniciation.css";
+import defaultBackground from "../../assets/imgs/base-intergalatica.png";
+import "../../style/iniciation.css";
 
 interface BackgroundProps {
   data: any;

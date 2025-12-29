@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { FaGithub, FaPlay } from 'react-icons/fa';
-import '../style/projetosStart.css';
+import '../../style/projects/projetosStart.css';
 
 interface ProjectStartProps {
   githubLink: string;

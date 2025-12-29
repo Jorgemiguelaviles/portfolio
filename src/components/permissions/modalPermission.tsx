@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/modalPermission.css';
+import '../../style/permissions/modalPermission.css';
 
 interface AudioPermissionModalProps {
   visible: boolean;

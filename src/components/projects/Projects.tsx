@@ -1,13 +1,13 @@
 import React from 'react';
 import ProjectStart from './ProjetosStart';
-import video from '../videos/backgorundSpace.mp4'
+import video from '../../videos/backgorundSpace.mp4'
+import '../../style/projects/projects.css'
 
 interface ProjectsProps {
   isRotated: boolean;
-  handleRotation: () => void;
 }
 
-const Projects: React.FC<ProjectsProps> = ({ isRotated, handleRotation }) => {
+const Projects: React.FC<ProjectsProps> = ({ isRotated }) => {
   const projects = [
     {
       githubLink: 'https://github.com/seuusuario1',
@@ -42,7 +42,7 @@ const Projects: React.FC<ProjectsProps> = ({ isRotated, handleRotation }) => {
   ];
 
   return (
-    <div className="projects" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+    <div>
       <div className="video-projects">
         {projects.map((project, index) => (
         <ProjectStart
@@ -54,9 +54,6 @@ const Projects: React.FC<ProjectsProps> = ({ isRotated, handleRotation }) => {
       ))}
       </div>
 
-      <button className="rotate-button" onClick={handleRotation}>
-        {isRotated ? 'Mostrar Soft Skills' : 'Mostrar Projetos'}
-      </button>
     </div>
   );
 };

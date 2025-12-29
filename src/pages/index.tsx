@@ -3,7 +3,7 @@ import { useDailyApod } from '../hooks/useDailyApod';
 import AudioPermissionModal from '../components/permissions/modalPermission';
 import Background from '../components/background/BackgroundMain';
 import * as Tone from "tone";
-import hyperspaceSound from '../../assets/audio/hiperespaco.mp3';
+import hyperspaceSound from '../assets/audio/hiperespaco.mp3';
 import HeaderCapacete from '../components/headers/Header-capacete';
 import FooterCapacete from '../components/footers/Footer-capacete';
 import HeaderNave from '../components/headers/Header-nave';

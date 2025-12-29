@@ -1,4 +1,4 @@
-import "../style/footer-nave.css";
+import "../../style/footers/footer-nave.css";
 import React from "react";
 import { motion } from "framer-motion";
 
