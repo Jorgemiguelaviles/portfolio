@@ -1,0 +1,80 @@
+/* Container do carrossel */
+.skills-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+/* Botão de skill */
+.skill-icon-button {
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-size: 28px;
+  color: #e6e6e6;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Hover — cresce levemente */
+.skill-icon-button:hover {
+  transform: scale(1.12);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 12px rgba(100, 180, 255, 0.25);
+}
+
+/* Remove foco feio do browser */
+.skill-icon-button:focus {
+  outline: none;
+}
+
+/* Setas */
+.nav-arros-skiils {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+  padding: 6px;
+  background: transparent;
+  border: none;
+
+  color: #9aa0a6;
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.nav-arros-skiils:hover {
+  color: #ffffff;
+  transform: scale(1.15);
+}
+
+.nav-arros-skiils:disabled {
+  opacity: 0.3;
+  cursor: default;
+  transform: none;
+}
+
+.nav-arros-skiils:disabled:hover {
+  color: #9aa0a6;
+}

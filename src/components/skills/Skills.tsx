@@ -1,43 +1,50 @@
-import React from 'react';
-import '../../style/skills/skills.css';
+import React from "react";
+import PainelSkills from "./painelSkills";
+import "../../style/skills/skills.css";
+import { softSkills } from "./softskills";
+import { hardSkills } from "./hardSkills";
 
 const SkillsSection: React.FC = () => {
   return (
-    <section className="skills">
+    <section className="skills-panel-root">
 
-      <h1>Painel de Habilidades</h1>
+      
 
-      {/* CONTROLE DE ESTADO VIA CSS */}
-      <input type="radio" name="skills" id="basic" defaultChecked hidden />
-      <input type="radio" name="skills" id="soft" hidden />
-      <input type="radio" name="skills" id="hard" hidden />
+      {/* CONTROLE VIA CSS */}
+      <input type="radio" name="skills-panel" id="skills-panel-basic" defaultChecked hidden />
+      <input type="radio" name="skills-panel" id="skills-panel-soft" hidden />
+      <input type="radio" name="skills-panel" id="skills-panel-hard" hidden />
 
-      {/* PAINEL DE BOTÕES */}
-      <div className="skills-panel-buttons">
-        <label htmlFor="soft" className="panel-button">
-          Soft Skills
-        </label>
+      <div className="skills-panel-stage">
 
-        <label htmlFor="hard" className="panel-button">
-          Hard Skills
-        </label>
-      </div>
+        {/* BOTÕES */}
+        <div className="skills-panel-buttons">
 
-      {/* CONTEÚDO */}
-      <div className="skills-content">
+          <h1 className="skills-panel-title">Painel de Habilidades</h1>
+          
+          <label htmlFor="skills-panel-soft" className="skills-panel-button">
+            Soft Skills
+          </label>
 
-        <div className="skills-soft">
-          {/* <SectionBio /> */}
-          <p>Conteúdo de Soft Skills</p>
+          <label htmlFor="skills-panel-hard" className="skills-panel-button">
+            Hard Skills
+          </label>
         </div>
 
-        <div className="skills-hard">
-          {/* <HardSkills /> */}
-          <p>Conteúdo de Hard Skills</p>
+        {/* CONTEÚDO */}
+        <div className="skills-panel-content">
+
+          <div className="skills-panel-soft">
+            <PainelSkills items={softSkills} />
+          </div>
+
+          <div className="skills-panel-hard">
+            <PainelSkills items={hardSkills} />
+          </div>
+
         </div>
 
       </div>
-
     </section>
   );
 };

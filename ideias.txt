@@ -1,7 +1,5 @@
-segunda
-- finzalizar painel softskills
-- finalizar painel hardskills
-
 terca
-- ajustar transições visuais
-- ajustar transições de som
+- ajustar transições visuais (1h)
+- ajustar transições de som (1h)
+- ajustar mobile (30min)
+- hospedar via vercel (10min)
