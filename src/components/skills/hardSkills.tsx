@@ -1,9 +1,28 @@
 import { ReactNode } from "react";
-import {  FaReact, FaPython, FaJava, FaDocker, FaLinux, FaAws } from "react-icons/fa";
-import { SiAngular, SiDjango, SiSpringboot, SiAmazon,
-  SiMysql, SiAmazons3, SiAmazondynamodb,
-  SiAmazoncloudwatch, SiTerraform, SiKubernetes,
-  SiDatadog, SiOpenai } from "react-icons/si";
+import {
+  FaReact,
+  FaPython,
+  FaJava,
+  FaDocker,
+  FaLinux,
+  FaAws
+} from "react-icons/fa";
+
+import {
+  SiAngular,
+  SiDjango,
+  SiSpringboot,
+  SiAmazon,
+  SiMysql,
+  SiAmazons3,
+  SiAmazondynamodb,
+  SiAmazoncloudwatch,
+  SiTerraform,
+  SiKubernetes,
+  SiDatadog,
+  SiOpenai
+} from "react-icons/si";
+
 import { TbApi, TbBrandAws, TbContainer } from "react-icons/tb";
 
 interface SkillItem {
@@ -12,112 +31,131 @@ interface SkillItem {
   icon: ReactNode;
 }
 
-
-
 export const hardSkills: SkillItem[] = [
   {
     titulo: "React",
     icon: <FaReact />,
-    description: "Biblioteca JavaScript para construção de interfaces modernas."
+    description:
+      "Biblioteca para construção de interfaces reativas, performáticas e escaláveis, com foco em componentização, estado previsível e experiência do usuário."
   },
   {
     titulo: "Angular",
     icon: <SiAngular />,
-    description: "Framework robusto para aplicações SPA de larga escala."
+    description:
+      "Framework completo para aplicações SPA corporativas, com arquitetura robusta, injeção de dependência e forte padronização."
   },
   {
     titulo: "Python",
     icon: <FaPython />,
-    description: "Linguagem versátil usada em backend, automação e ciência de dados."
+    description:
+      "Linguagem multiparadigma utilizada em backend, automação, processamento de dados e integração com serviços e APIs."
   },
   {
     titulo: "Django",
     icon: <SiDjango />,
-    description: "Framework Python para aplicações rápidas, seguras e escaláveis."
+    description:
+      "Framework backend em Python voltado para desenvolvimento rápido, seguro e organizado, com ORM poderoso e boas práticas nativas."
   },
   {
     titulo: "Java",
     icon: <FaJava />,
-    description: "Linguagem orientada a objetos para sistemas robustos e corporativos."
+    description:
+      "Linguagem orientada a objetos amplamente utilizada em sistemas críticos, financeiros e corporativos de alta confiabilidade."
   },
   {
     titulo: "Spring Boot",
     icon: <SiSpringboot />,
-    description: "Framework Java para APIs e microsserviços."
+    description:
+      "Framework Java para criação de APIs REST e microsserviços, com configuração simplificada, segurança e integração com ecossistema Spring."
   },
   {
-    titulo: "AWS",
+    titulo: "AWS (Cloud Computing)",
     icon: <SiAmazon />,
-    description: "Plataforma líder em computação em nuvem."
+    description:
+      "Plataforma líder em computação em nuvem, utilizada para arquiteturas escaláveis, resilientes e de alta disponibilidade."
   },
   {
     titulo: "Amazon Aurora (MySQL)",
     icon: <SiMysql />,
-    description: "Banco relacional otimizado pela AWS, altamente performático."
+    description:
+      "Banco de dados relacional gerenciado pela AWS, otimizado para alta performance, escalabilidade automática e alta disponibilidade."
   },
   {
     titulo: "AWS Lambda",
     icon: <TbBrandAws />,
-    description: "Execução de código serverless totalmente gerenciado."
+    description:
+      "Execução de código serverless sob demanda, permitindo arquiteturas orientadas a eventos com redução de custos operacionais."
   },
   {
     titulo: "API Gateway",
     icon: <TbApi />,
-    description: "Gerenciamento e exposição de APIs escaláveis."
+    description:
+      "Gerenciamento, versionamento e exposição segura de APIs REST e HTTP em ambientes distribuídos."
   },
   {
     titulo: "Amazon S3",
     icon: <SiAmazons3 />,
-    description: "Armazenamento de objetos durável e distribuído."
+    description:
+      "Serviço de armazenamento de objetos altamente durável, escalável e integrado a pipelines de dados e aplicações cloud."
   },
   {
-    titulo: "EC2",
+    titulo: "Amazon EC2",
     icon: <FaAws />,
-    description: "Máquinas virtuais sob demanda na nuvem."
+    description:
+      "Infraestrutura de máquinas virtuais sob demanda, permitindo controle total do ambiente de execução em nuvem."
   },
   {
-    titulo: "DynamoDB",
+    titulo: "Amazon DynamoDB",
     icon: <SiAmazondynamodb />,
-    description: "Banco NoSQL totalmente gerenciado e de baixa latência."
+    description:
+      "Banco NoSQL totalmente gerenciado, com baixa latência, escalabilidade automática e foco em aplicações de alta performance."
   },
   {
-    titulo: "CloudWatch",
+    titulo: "Amazon CloudWatch",
     icon: <SiAmazoncloudwatch />,
-    description: "Monitoramento, métricas e logs na AWS."
+    description:
+      "Monitoramento de métricas, logs e eventos para observabilidade e diagnóstico de sistemas em produção."
   },
   {
     titulo: "Terraform",
     icon: <SiTerraform />,
-    description: "Infraestrutura como código para provisionamento automatizado."
+    description:
+      "Infraestrutura como código (IaC) para provisionamento consistente, versionado e automatizado de ambientes cloud."
   },
   {
     titulo: "Docker",
     icon: <FaDocker />,
-    description: "Contêinerização de aplicações e microsserviços."
+    description:
+      "Contêinerização de aplicações para padronizar ambientes, facilitar deploys e reduzir problemas de dependência."
   },
   {
     titulo: "Kubernetes",
     icon: <SiKubernetes />,
-    description: "Orquestração de contêineres em escala."
+    description:
+      "Orquestração de contêineres para gerenciamento, escalabilidade e resiliência de aplicações distribuídas."
   },
   {
     titulo: "Containers",
     icon: <TbContainer />,
-    description: "Ambientes isolados e portáveis para execução de serviços."
+    description:
+      "Isolamento e empacotamento de aplicações com foco em portabilidade, segurança e consistência entre ambientes."
   },
   {
     titulo: "Datadog",
     icon: <SiDatadog />,
-    description: "Observabilidade completa: logs, métricas e alertas."
+    description:
+      "Plataforma de observabilidade para monitoramento completo de infraestrutura, aplicações e experiências do usuário."
   },
   {
     titulo: "Linux",
     icon: <FaLinux />,
-    description: "Sistema operacional base para servidores e cloud."
+    description:
+      "Sistema operacional base para servidores, cloud e containers, com foco em estabilidade, segurança e performance."
   },
   {
     titulo: "Integração com IA",
     icon: <SiOpenai />,
-    description: "Uso de modelos de IA para automação e aprimoramento de sistemas."
+    description:
+      "Uso de modelos de inteligência artificial para automação, análise de dados, otimização de processos e sistemas inteligentes."
   }
 ];

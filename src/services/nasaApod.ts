@@ -10,7 +10,7 @@ export type ApodData = {
   copyright?: string;
 };
 
-const API_KEY = import.meta.env.VITE_NASA_API_KEY || 'DEMO_KEY';
+const API_KEY = 'SjwgKOQcfq2AyUtyWQjDI3KmzqMae0h7GRe1JJJD';
 
 export async function fetchApod(): Promise<ApodData> {
   const response = await fetch(

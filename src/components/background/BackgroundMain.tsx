@@ -10,7 +10,10 @@ interface BackgroundProps {
   titleText: string;
   handleExploreClick: () => void;
   mainPage: boolean;
+  onZoomStart: () => void; // 🔑 callback para silenciar o fundo
 }
+
+const IMAGE_TIMEOUT = 6000;
 
 const Background: React.FC<BackgroundProps> = ({
   data,
@@ -19,30 +22,70 @@ const Background: React.FC<BackgroundProps> = ({
   titleText,
   handleExploreClick,
   mainPage,
+  onZoomStart,
 }) => {
-  const [visible, setVisible] = useState(true);
+  const [imageReady, setImageReady] = useState(false);
+  const [forceStopLoading, setForceStopLoading] = useState(false);
+  const [zoomTriggered, setZoomTriggered] = useState(false);
 
-  console.log('visible',visible)
-  console.log('mainPage',mainPage)
-
+  /* ===============================
+     CONTROLE ROBUSTO DA IMAGEM
+  ============================== */
   useEffect(() => {
-    if (mainPage) {
-      setVisible(true);
+    if (!data || data.media_type !== "image") {
+      setImageReady(true);
+      return;
     }
-  }, [mainPage]);
+
+    const img = new Image();
+    const timeout = setTimeout(() => {
+      setImageReady(true);
+      setForceStopLoading(true);
+    }, IMAGE_TIMEOUT);
+
+    img.src = data.hdurl || data.url;
+
+    img.onload = () => {
+      clearTimeout(timeout);
+      setImageReady(true);
+    };
+
+    img.onerror = () => {
+      clearTimeout(timeout);
+      setImageReady(true);
+      setForceStopLoading(true);
+    };
+
+    return () => clearTimeout(timeout);
+  }, [data]);
+
+  /* ===============================
+     DISPARO ÚNICO DO SILÊNCIO
+  ============================== */
+  useEffect(() => {
+    if (isZoomOut && !zoomTriggered) {
+      setZoomTriggered(true);
+      onZoomStart(); // 🔇 silencia apenas o fundo
+    }
+
+    if (!isZoomOut) {
+      setZoomTriggered(false); 
+    }
+  }, [isZoomOut, zoomTriggered, onZoomStart]);
+
+  const shouldShowLoader =
+    !forceStopLoading &&
+    isLoading &&
+    !imageReady;
 
   return (
-    <AnimatePresence
-      onExitComplete={() => {
-        setVisible(false);
-      }}
-    >
-      {visible && mainPage && (
+    <AnimatePresence>
+      {mainPage && (
         <motion.section
           className="start"
           style={{
             backgroundImage:
-              data?.media_type === "image"
+              data?.media_type === "image" && imageReady
                 ? `url(${data.hdurl || data.url})`
                 : `url(${defaultBackground})`,
           }}
@@ -64,7 +107,7 @@ const Background: React.FC<BackgroundProps> = ({
             <div className="text-layer">
               <h1 className="typing-effect">{titleText}</h1>
 
-              {isLoading && (
+              {shouldShowLoader && (
                 <div className="loader-container">
                   <div className="cosmic-loader" />
                   <p className="loading-text">
@@ -73,7 +116,7 @@ const Background: React.FC<BackgroundProps> = ({
                 </div>
               )}
 
-              {!isLoading && !isZoomOut && (
+              {!shouldShowLoader && !isZoomOut && (
                 <div className="button-layer">
                   <button
                     className="custom-button"

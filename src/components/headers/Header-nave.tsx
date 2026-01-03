@@ -1,61 +1,61 @@
 // src/components/Header-nave.tsx
 import React from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import jorgetech from "../../assets/imgs/jorgetech.png";
 import "../../style/headers/header-nave.css";
+import skillSwitchSound from "../../assets/audio/openDoor.mp3";
 
 interface HeaderNaveProps {
   mainPage: boolean;
+  setMainPage: any;
+  setRotacao: any;
 }
 
-const HeaderNave: React.FC<HeaderNaveProps> = ({ mainPage }) => {
-  const navigate = useNavigate();
+const HeaderNave: React.FC<HeaderNaveProps> = ({ mainPage, setMainPage, setRotacao }) => {
+  const playSkillSwitchSound = () => {
+    const audio = new Audio(skillSwitchSound);
+    audio.volume = 0.45;
+    audio.play().catch(() => {});
+  };
 
   return (
     <motion.div
       className="nave-hud"
-      initial={false}
-      animate={
-        mainPage
-          ? { opacity: 0, y: -120 } // mainPage true → escondido
-          : { opacity: 1, y: 0 }    // mainPage false → aparece descendo
-      }
-      transition={{
-        duration: 1.3,
-        ease: [0.16, 1, 0.3, 1],
-      }}
+      initial={{ opacity: 0, y: -120 }}
+      animate={{ opacity: mainPage ? 0 : 1, y: mainPage ? -120 : 0 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="nave-frame">
-        {/* Indicadores do visor */}
         <div className="nave-status">
           <span className="nave-status-dot active" />
           <span className="nave-status-dot" />
           <span className="nave-status-dot" />
         </div>
 
-        {/* Logotipo */}
         <motion.img
           src={jorgetech}
           className="nave-logo"
           alt="Logotipo"
           initial={{ scale: 0.85, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          animate={{ scale: 1, opacity: mainPage ? 0 : 1 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         />
 
-        {/* Controles */}
         <nav className="nave-controls">
           <button
             className="nave-button"
-            onClick={() => navigate("/")}
+            onClick={() => {
+              playSkillSwitchSound();
+              setMainPage(true); // aqui a animação de sumir vai funcionar
+              setRotacao(true);
+            }}
           >
             PRINCIPAL
           </button>
 
           <button
             className="nave-button"
-            onClick={() => window.open("/curriculum/CV.docx", "_blank")}
+            onClick={() => window.open("src/assets/docs/curriculum.pdf", "_blank")}
           >
             CURRÍCULO
           </button>

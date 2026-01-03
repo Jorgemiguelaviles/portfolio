@@ -30,7 +30,7 @@ const FooterNave: React.FC<FooterNaveProps> = ({ mainPage }) => {
           <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
             LINKEDIN
           </a>
-          <a href="https://github.com" target="_blank" rel="noreferrer">
+          <a href="https://github.com/Jorgemiguelaviles" target="_blank" rel="noreferrer">
             GITHUB
           </a>
           <a

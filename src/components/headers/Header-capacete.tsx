@@ -32,17 +32,7 @@ const HeaderCapacete: React.FC<HeaderProps> = ({ mainPage }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            onClick={() => navigate("/")}
-          >
-            Principal
-          </motion.button>
-
-          <motion.button
-            className="capacete-button"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            onClick={() => window.open("/curriculum/CV.docx", "_blank")}
+            onClick={() => window.open("src/assets/docs/curriculum.pdf", "_blank")}
           >
             Currículo
           </motion.button>

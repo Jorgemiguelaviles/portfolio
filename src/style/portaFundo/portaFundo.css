@@ -1,0 +1,121 @@
+.portaFut_container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: auto; /* ⚡ permite clicar nos botões dentro do container */
+}
+
+.portaFut_visible {
+  opacity: 1;
+}
+
+/* Motores */
+.portaFut_motor {
+  width: 160px;
+  height: 160px;
+  border: 12px solid rgba(140, 80, 255, 0.3);
+  border-top: 12px solid rgba(200, 160, 255, 0.8);
+  border-radius: 50%;
+  position: fixed;
+  top: 50%;
+  pointer-events: none; /* motores não bloqueiam clique */
+  z-index: 999;
+  transition: transform 1.5s ease-in-out;
+}
+
+.portaFut_motor-left { left: 5%; }
+.portaFut_motor-right { right: 5%; }
+
+/* Portas */
+.portaFut_porta {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: transform 1.5s ease-in-out;
+}
+
+.portaFut_porta-left {
+  left: 0;
+  background: linear-gradient(120deg, #0b0f14 0%, #121923 60%, #0a0d12 100%);
+  box-shadow: inset -4px 0 12px rgba(140, 80, 255, 0.25), 0 0 20px rgba(76, 201, 240, 0.15);
+  border-right: 1px solid rgba(140, 80, 255, 0.35);
+}
+
+.portaFut_porta-right {
+  right: 0;
+  background: linear-gradient(60deg, #0b0f14 0%, #121923 60%, #0a0d12 100%);
+  box-shadow: inset 4px 0 12px rgba(140, 80, 255, 0.25), 0 0 20px rgba(76, 201, 240, 0.15);
+  border-left: 1px solid rgba(140, 80, 255, 0.35);
+}
+
+.portaFut_aberta.portaFut_porta-left { transform: translateX(-100%); }
+.portaFut_aberta.portaFut_porta-right { transform: translateX(100%); }
+
+/* Interno das portas */
+.portaFut_porta-inner-left,
+.portaFut_porta-inner-right {
+  position: absolute;
+  inset: 0;
+  margin: 4%;
+  background: linear-gradient(180deg, rgba(40,40,60,0.6), rgba(20,20,30,0.8));
+}
+
+.portaFut_porta-inner-left {
+  margin-left: 4%;
+  border-radius: 0 50% 50% 0 / 0 50% 50% 0;
+}
+
+.portaFut_porta-inner-right {
+  margin-right: 4%;
+  border-radius: 50% 0 0 50% / 50% 0 0 50%;
+}
+
+/* Botão */
+.portaFut_button {
+  position: absolute;
+  bottom: 5%;
+  z-index: 10010; /* ⚡ acima do flash */
+  padding: 1rem 2rem;
+  background: rgba(140, 80, 255, 0.2);
+  border: 1.5px solid rgba(200, 160, 255, 0.55);
+  color: #f1e6ff;
+  font-family: Orbitron, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 0 10px rgba(160, 90, 255, 0.35), 0 0 12px rgba(120, 60, 255, 0.25);
+  transition: all 0.35s ease;
+}
+
+.portaFut_button:hover {
+  background: rgba(180, 110, 255, 0.38);
+  box-shadow: 0 0 26px rgba(200, 160, 255, 0.9), inset 0 0 18px rgba(220, 180, 255, 0.6);
+}
+
+/* Flash branco */
+.portaFut_flash {
+  position: fixed;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  animation: flashWhiteAnim 1s forwards;
+  z-index: 10000;
+  pointer-events: none; /* ⚡ flash não bloqueia clique */
+}
+
+@keyframes flashWhiteAnim {
+  0% { opacity: 0; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+  100% { opacity: 1; transform: scale(3); }
+}

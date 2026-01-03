@@ -13,8 +13,6 @@
   height: 50vh;        /* ocupa a altura da tela */
   overflow-y: auto;    /* permite deslizar no eixo Y */
   overflow-x: hidden;  /* evita scroll lateral indesejado */
-
-  padding: 24px 0;     /* respiro para o primeiro e último item */
 }
 
 .container-main::-webkit-scrollbar {
@@ -47,32 +45,27 @@
   );
 }
 
-/* ================= SETAS DE NAVEGAÇÃO ================= */
+/* ================= SETAS ================= */
 .nav-arrow {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
   font-size: 2.5rem;
-
   color: var(--holo-cyan);
   background: linear-gradient(
     135deg,
     rgba(10, 40, 80, 0.8),
     rgba(0, 10, 30, 0.9)
   );
-
   border: 1px solid var(--holo-blue);
   padding: 0.5rem 0.8rem;
   border-radius: 6px;
-
   cursor: pointer;
-  z-index: 15;
-
+  z-index: 20;
   box-shadow:
     0 0 12px rgba(120, 200, 255, 0.6),
     inset 0 0 12px rgba(120, 200, 255, 0.25);
-
-  transition: transform 0.2s, box-shadow 0.3s;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .nav-arrow:hover {
@@ -231,6 +224,45 @@
   animation: hologramFlicker 4s infinite ease-in-out;
 }
 
+
+
+
+/* ================= CONTEÚDOS DOS PAINÉIS ================= */
+.panel-content {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0;
+  transform: scale(0.96);
+  pointer-events: none;
+
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+
+/* ===== BIO ===== */
+.ship-panel.panel-bio .panel-content.bio {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* ===== SKILLS ===== */
+.ship-panel.panel-skills .panel-content.skills {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* ===== PROJECTS ===== */
+.ship-panel.panel-projects .panel-content.projects {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
 /* ================= FLICKER HOLOGRÁFICO ================= */
 @keyframes hologramFlicker {
   0%, 100% { opacity: 1; }
@@ -307,4 +339,135 @@
   color: rgba(180, 230, 255, 0.85);
   text-shadow:
     0 0 6px rgba(120, 200, 255, 0.4);
+}
+
+
+
+@media (max-width: 768px) {
+
+  /* ===== SEÇÃO PRINCIPAL ===== */
+  .new-section {
+    padding: 8px;
+  }
+
+  /* ===== PAINEL ===== */
+  .ship-panel {
+    width: 95vw;
+    height: 90vh;
+
+    padding: 12px;
+    border-radius: 12px;
+
+    animation:
+      revealPanel 1.4s forwards ease-in-out,
+      holoFloat 5s infinite ease-in-out;
+  }
+
+  /* ===== CONTAINER ===== */
+  .container-main {
+    width: 100%;
+    height: 100%;
+
+    overflow-y: auto;
+    padding-bottom: 80px; /* espaço para setas */
+  }
+
+  /* ===== CONTEÚDOS ===== */
+  .panel-content {
+    padding: 16px;
+  }
+
+  /* ===== TEXTOS ===== */
+  .panel-title {
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+  }
+
+  .panel-text {
+    font-size: 1.1rem;
+    line-height: 1.55;
+  }
+
+  /* ===== AVATAR ===== */
+  .panel-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  /* ===== LOGO ===== */
+  .panel-logo {
+    width: 130px;
+  }
+
+  /* ===== SETAS — MOBILE MODE ===== */
+  .nav-arrow {
+    position: fixed;
+    bottom: 18px;
+    top: auto;
+
+    transform: none;
+
+    font-size: 1.9rem;
+
+    padding: 0.45rem 0.65rem;
+
+    z-index: 30;
+  }
+
+  .nav-arrow.left {
+    left: 20%;
+  }
+
+  .nav-arrow.right {
+    right: 20%;
+  }
+
+  .nav-arrow:hover {
+    transform: scale(1.15);
+  }
+
+  /* ===== SCANLINES SUAVIZADAS ===== */
+  .ship-panel::before {
+    opacity: 0.3;
+  }
+
+  .ship-panel::after {
+    opacity: 0.18;
+  }
+}
+
+/* =========================================================
+   EXTRA SMALL DEVICES (≤ 420px)
+========================================================= */
+@media (max-width: 1720px) {
+
+  .container-main {
+    min-height: 30vh;
+    max-height: 30vh;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .panel-title {
+    font-size: 1.2rem;
+  }
+
+  .panel-text {
+    font-size: 1rem;
+  }
+
+  .nav-arrow {
+    font-size: 1.7rem;
+  }
+
+  .nav-arrow.left {
+    left: 12%;
+  }
+
+  .nav-arrow.right {
+    right: 12%;
+  }
 }

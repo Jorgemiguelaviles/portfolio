@@ -28,7 +28,7 @@ const FooterCapacete: React.FC<FooterProps> = ({ mainPage }) => {
         </motion.a>
 
         <motion.a
-          href="https://github.com/"
+          href="https://github.com/Jorgemiguelaviles"
           target="_blank"
           rel="noopener noreferrer"
           className="capacete-link"

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { FaGithub, FaPlay } from 'react-icons/fa';
 import '../../style/projects/projetosStart.css';
+import skillSwitchSound from "../../assets/audio/cliqueButtonSound.mp3";
 
 interface ProjectStartProps {
   githubLink: string;
@@ -17,7 +18,16 @@ const ProjectStart: React.FC<ProjectStartProps> = ({ githubLink, videoPath, titl
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  const playSkillSwitchSound = () => {
+    const audio = new Audio(skillSwitchSound);
+    audio.volume = 0.45;
+    audio.play().catch(() => {});
+  };
+
+
+
   const handlePlayClick = () => {
+    playSkillSwitchSound()
     setIconsVisible(false);
 
     // abre porta
@@ -30,6 +40,7 @@ const ProjectStart: React.FC<ProjectStartProps> = ({ githubLink, videoPath, titl
   };
 
   const handleVideoEnded = () => {
+    playSkillSwitchSound()
     setVideoPlaying(false);
 
     // fecha porta

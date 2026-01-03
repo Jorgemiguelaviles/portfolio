@@ -33,7 +33,7 @@
 
   font-family: "Orbitron", system-ui, sans-serif;
   font-size: 1.6rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.18em;         
 
   color: #e6f1ff;
 }
@@ -120,21 +120,23 @@
 }
 
 /* ===============================
-   PAINÉIS
+   PAINÉIS (SOBREPOSTOS)
 ================================ */
 .skills-panel-soft,
 .skills-panel-hard {
+  margin: 1rem;
+  position: absolute;
+  inset: 0;
+
   opacity: 0;
-  transform: scale(0.97);
+  transform: scale(0.96);
   pointer-events: none;
-  max-height: 0;
-  overflow: hidden;
 
   transition:
     opacity 0.5s ease,
-    transform 0.5s ease,
-    max-height 0.7s ease;
+    transform 0.5s ease;
 }
+
 
 /* ===============================
    CONTROLE POR RADIO
@@ -157,4 +159,58 @@
 #skills-panel-hard:checked ~ .skills-panel-stage .skills-panel-soft {
   opacity: 0;
   max-height: 0;
+}
+
+
+
+/* =========================================================
+   MOBILE LAYOUT (≤ 768px)
+========================================================= */
+@media (max-width: 1420px) {
+
+  /* GRID VIRA VERTICAL */
+  .skills-panel-stage {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    row-gap: 24px;
+  }
+
+  /* BOTÕES + TÍTULO NO TOPO */
+  .skills-panel-buttons {
+    grid-column: 1;
+    grid-row: 1;
+
+    flex-direction: column;
+    align-items: center;
+
+    border-left: none;
+    border-bottom: 3px solid rgba(120, 180, 255, 0.5);
+  }
+
+  /* CONTEÚDO ABAIXO */
+  .skills-panel-content {
+    grid-column: 1;
+    grid-row: 2;
+
+    min-height: 300px;
+  }
+
+  /* PAINÉIS SOBREPOSTOS CONTINUAM NO MESMO LUGAR */
+  .skills-panel-soft,
+  .skills-panel-hard {
+    inset: 0;
+  }
+
+  /* BOTÕES UM POUCO MAIS LARGOS NO MOBILE */
+  .skills-panel-button {
+    width: 90%;
+    text-align: center;
+  }
+
+  /* TÍTULO AJUSTADO */
+  .skills-panel-title {
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+  }
 }

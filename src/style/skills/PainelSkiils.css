@@ -1,14 +1,27 @@
-/* Container do carrossel */
+/* =========================================================
+   CONTAINER PRINCIPAL
+========================================================= */
+.painel-skills {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* =========================================================
+   CARROSSEL
+========================================================= */
 .skills-carousel {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  margin: 30px 0;
 }
 
-/* Botão de skill */
+/* =========================================================
+   BOTÃO DE SKILL
+========================================================= */
 .skill-icon-button {
   width: 64px;
   height: 64px;
@@ -32,19 +45,19 @@
     box-shadow 0.25s ease;
 }
 
-/* Hover — cresce levemente */
 .skill-icon-button:hover {
   transform: scale(1.12);
   background: rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 12px rgba(100, 180, 255, 0.25);
 }
 
-/* Remove foco feio do browser */
 .skill-icon-button:focus {
   outline: none;
 }
 
-/* Setas */
+/* =========================================================
+   SETAS
+========================================================= */
 .nav-arros-skiils {
   display: flex;
   align-items: center;
@@ -74,7 +87,86 @@
   cursor: default;
   transform: none;
 }
+/* =========================================================
+   DETALHES — ESTADOS DE TRANSIÇÃO
+========================================================= */
+.skill-details {
+  text-align: center;
+  will-change: opacity, transform, filter;
+}
 
-.nav-arros-skiils:disabled:hover {
-  color: #9aa0a6;
+/* ENTRADA */
+.skill-details.fade-in {
+  animation: skillFadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* SAÍDA */
+.skill-details.fade-out {
+  animation: skillFadeOut 0.14s ease-in forwards;
+}
+
+/* =========================================================
+   KEYFRAMES
+========================================================= */
+@keyframes skillFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes skillFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+    filter: blur(1px);
+  }
+}
+
+/* =========================================================
+   MOBILE — EMPILHAMENTO CORRETO
+========================================================= */
+@media (max-width: 768px) {
+
+  .painel-skills {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* BOTÕES PRIMEIRO */
+  .skills-carousel {
+    order: 1;
+    margin-bottom: 20px;
+  }
+
+  /* DETALHES DEPOIS */
+  .skill-details {
+    order: 2;
+    width: 100%;
+  }
+
+  .skill-icon-button {
+    width: 52px;
+    height: 52px;
+    font-size: 1.3rem;
+  }
+
+  .skill-details h2 {
+    font-size: 1.25rem;
+  }
+
+  .skill-details p {
+    font-size: 1rem;
+  }
 }

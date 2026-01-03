@@ -1,5 +1,3 @@
-terca
-- ajustar transições visuais (1h)
+- ajustar botão header principal
 - ajustar transições de som (1h)
-- ajustar mobile (30min)
-- hospedar via vercel (10min)
+- atualizar iu caddê você

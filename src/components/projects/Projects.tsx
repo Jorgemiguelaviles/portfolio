@@ -3,11 +3,9 @@ import ProjectStart from './ProjetosStart';
 import video from '../../videos/backgorundSpace.mp4'
 import '../../style/projects/projects.css'
 
-interface ProjectsProps {
-  isRotated: boolean;
-}
 
-const Projects: React.FC<ProjectsProps> = ({ isRotated }) => {
+
+const Projects: React.FC = () => {
   const projects = [
     {
       githubLink: 'https://github.com/seuusuario1',

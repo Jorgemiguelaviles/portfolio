@@ -1,58 +1,48 @@
-import React, { useState, useEffect } from "react";
-import { useDailyApod } from '../hooks/useDailyApod';
-import AudioPermissionModal from '../components/permissions/modalPermission';
-import Background from '../components/background/BackgroundMain';
+import React, { useState } from "react";
+import { useDailyApod } from "../hooks/useDailyApod";
+import AudioPermissionModal from "../components/permissions/modalPermission";
+import Background from "../components/background/BackgroundMain";
 import * as Tone from "tone";
-import hyperspaceSound from '../assets/audio/hiperespaco.mp3';
-import HeaderCapacete from '../components/headers/Header-capacete';
-import FooterCapacete from '../components/footers/Footer-capacete';
-import HeaderNave from '../components/headers/Header-nave';
-import FooterNave from '../components/footers/Footer-nave';
+import hyperspaceSound from "../assets/audio/hiperespaco.mp3";
+import HeaderCapacete from "../components/headers/Header-capacete";
+import FooterCapacete from "../components/footers/Footer-capacete";
+import HeaderNave from "../components/headers/Header-nave";
+import FooterNave from "../components/footers/Footer-nave";
 import ContenteMain from "../components/conteentMain";
+import fundoImg from "../assets/imgs/base-intergalatica-fundo.png";
+import pageTransitionSound from "../assets/audio/trocaDeCapacete.mp3";
+import PortaFuturistica from "../components/PortaFuturistica/portaFuturistica";
 
 const SectionStart: React.FC = () => {
   const { data, error } = useDailyApod();
+
   const [isZoomOut, setIsZoomOut] = useState(false);
   const [audioUnlocked, setAudioUnlocked] = useState<boolean | null>(null);
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
-  
-  // Novo estado de transição
-  const [transicao, setTransicao] = useState(true); // Transição começa imediatamente
-  const [mainPage, setMainPage] = useState(true); // Controle do estado de mainPage
-  
+  const [backgroundGain, setBackgroundGain] = useState<Tone.Gain | null>(null);
+
+  const [transicao, setTransicao] = useState(true);
+  const [mainPage, setMainPage] = useState(true);
+  const [rotacao, setRotacao] = useState(false);
+
+  const [pageTransitionSoundPlayed, setPageTransitionSoundPlayed] = useState(false);
+
   const isLoading = !data && !error;
   const titleText = isLoading
-    ? 'Inicializando protocolo de exploração interestelar…'
-    : data?.title || 'Exploração além do horizonte conhecido';
+    ? "Inicializando protocolo de exploração interestelar…"
+    : data?.title || "Exploração além do horizonte conhecido";
 
-  const setCookie = (name: string, value: string, days = 365) => {
-    const expires = new Date(Date.now() + days * 864e5).toUTCString();
-    document.cookie = `${name}=${value}; expires=${expires}; path=/`;
-  };
-
-  const getCookie = (name: string) => {
-    return document.cookie
-      .split('; ')
-      .find(row => row.startsWith(name + '='))?.split('=')[1];
-  };
-
-  useEffect(() => {
-    const permission = getCookie('audioPermission');
-    if (permission === 'granted') {
-      setAudioUnlocked(true);
-    } else if (permission === 'denied') {
-      setAudioUnlocked(false);
-    } else {
-      setAudioUnlocked(null);
-    }
-  }, []);
-
+  /* ===============================
+     SOM AMBIENTE (FUNDO)
+  ============================== */
   const unlockAudio = async () => {
     await Tone.start();
     const masterGain = new Tone.Gain(0).toDestination();
+    setBackgroundGain(masterGain);
+
     const noise = new Tone.Noise("pink").start();
     const filter = new Tone.Filter({ type: "lowpass", frequency: 800, rolloff: -24 });
     const reverb = new Tone.Reverb({ decay: 12, wet: 0.6 });
+
     noise.connect(filter);
     filter.connect(reverb);
     reverb.connect(masterGain);
@@ -65,49 +55,58 @@ const SectionStart: React.FC = () => {
     masterGain.gain.linearRampToValueAtTime(0.35, now + 10);
 
     setAudioUnlocked(true);
-    setCookie("audioPermission", "granted");
   };
 
+  /* ===============================
+     SILENCIAR APENAS O FUNDO
+  ============================== */
+  const fadeOutBackgroundSound = () => {
+    if (!backgroundGain) return;
+    const now = Tone.now();
+    backgroundGain.gain.cancelScheduledValues(now);
+    backgroundGain.gain.linearRampToValueAtTime(0, now + 1.2);
+  };
+
+  /* ===============================
+     SOM DE HIPERESPAÇO
+  ============================== */
   const playHyperspaceSound = async () => {
-    const hyperspaceAudio = new Audio(hyperspaceSound);
-    hyperspaceAudio.loop = false;
-    hyperspaceAudio.volume = 0.5;
-    hyperspaceAudio.play().catch(() => {});
-    return hyperspaceAudio;
+    const audio = new Audio(hyperspaceSound);
+    audio.volume = 0.5;
+    audio.play().catch(() => {});
   };
 
-  const stopBackgroundSound = () => {
-    if (audio) {
-      audio.pause();
-      setAudio(null);
-    }
+  /* ===============================
+     SOM DE TRANSIÇÃO DE PÁGINA
+  ============================== */
+  const playPageTransitionSound = () => {
+    if (pageTransitionSoundPlayed) return;
+    const audio = new Audio(pageTransitionSound);
+    audio.volume = 0.6;
+    audio.play().catch(() => {});
+    setPageTransitionSoundPlayed(true);
   };
 
-  const denyAudio = () => {
-    setAudioUnlocked(false);
-    setCookie('audioPermission', 'denied');
-  };
+  const denyAudio = () => setAudioUnlocked(false);
 
+  /* ===============================
+     AÇÃO PRINCIPAL
+  ============================== */
   const handleExploreClick = async () => {
-    stopBackgroundSound();
+    fadeOutBackgroundSound();
     await playHyperspaceSound();
 
-    setTimeout(() => {
-      setIsZoomOut(true); // Começa o zoom-out
-    }, 4000);
+    setTimeout(() => setIsZoomOut(true), 4000);
 
     setTimeout(() => {
-      setIsZoomOut(false); // Finaliza o zoom-out
-      setTransicao(false); // Inicia a transição imediatamente
-
-      // Aguardar 7 segundos antes de alterar o mainPage para true
+      setIsZoomOut(false);
+      setTransicao(false);
       setTimeout(() => {
-        setMainPage(false); // Define mainPage como true após 7 segundos de espera
-      }, 7000); // 7 segundos de delay
+        playPageTransitionSound();
+        setMainPage(false);
+      }, 7000);
     }, 6000);
   };
-
-  
 
   return (
     <>
@@ -116,13 +115,14 @@ const SectionStart: React.FC = () => {
         onConfirm={unlockAudio}
         onClose={denyAudio}
       />
-      
-      {/* Header do site */}
+
       <HeaderCapacete mainPage={transicao} />
-      <HeaderNave mainPage={mainPage} />
-    
-      
-      {/* Componente do fundo com animações */}
+      <HeaderNave
+        mainPage={mainPage}
+        setMainPage={setMainPage}
+        setRotacao={setRotacao}
+      />
+
       <Background
         data={data}
         isZoomOut={isZoomOut}
@@ -130,9 +130,22 @@ const SectionStart: React.FC = () => {
         titleText={titleText}
         handleExploreClick={handleExploreClick}
         mainPage={transicao}
+        onZoomStart={fadeOutBackgroundSound}
       />
-      <ContenteMain  mainPage={transicao}/>
-      {/* Footer do site */}
+
+      <ContenteMain mainPage={transicao} rotacao={rotacao} />
+
+      {!transicao && (
+        <PortaFuturistica
+          rotacao={rotacao}
+          fundoUrl={fundoImg}
+          backgroundGain={backgroundGain} // para silenciar fundo
+          onConfirm={() => {
+            console.log('testando')
+          }}
+        />
+      )}
+
       <FooterCapacete mainPage={transicao} />
       <FooterNave mainPage={mainPage} />
     </>

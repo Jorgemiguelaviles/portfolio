@@ -32,7 +32,7 @@ const AudioPermissionModal: React.FC<AudioPermissionModalProps> = ({
             </button>
 
             <button
-            className="secondary-button"
+            className="custom-button"
             onClick={onClose}
             >
             Continuar sem áudio

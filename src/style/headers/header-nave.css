@@ -90,3 +90,34 @@
 .nave-button:active {
   transform: translateY(1px);
 }
+
+
+.portal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: black;
+  overflow: hidden;
+}
+
+.portal-door {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(circle at center, #111, #000);
+}
+
+.portal-door.left {
+  left: 0;
+}
+
+.portal-door.right {
+  right: 0;
+}
+
+.portal-zoom {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, #222, #000);
+}
