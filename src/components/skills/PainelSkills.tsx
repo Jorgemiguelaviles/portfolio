@@ -2,7 +2,6 @@ import React, { useState, ReactNode } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../../style/skills/PainelSkiils.css";
 
-// 🔊 som único para troca de skill
 import skillSwitchSound from "../../assets/audio/cliqueButtonSound.mp3";
 
 export interface SkillItem {
@@ -16,7 +15,7 @@ interface PainelSkillsProps {
 }
 
 const ITEMS_PER_PAGE = 5;
-const SWITCH_DELAY = 140; // ms — tempo do fade-out
+const SWITCH_DELAY = 140;
 
 const PainelSkills: React.FC<PainelSkillsProps> = ({ items }) => {
   const [pageIndex, setPageIndex] = useState(0);
@@ -24,28 +23,20 @@ const PainelSkills: React.FC<PainelSkillsProps> = ({ items }) => {
   const [isSwitching, setIsSwitching] = useState(false);
 
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
-
   const start = pageIndex * ITEMS_PER_PAGE;
   const visibleItems = items.slice(start, start + ITEMS_PER_PAGE);
   const selected = items[selectedIndex];
 
-  /* ===============================
-     SOM DE TROCA DE SKILL
-  ============================== */
   const playSkillSwitchSound = () => {
     const audio = new Audio(skillSwitchSound);
     audio.volume = 0.45;
     audio.play().catch(() => {});
   };
 
-  /* ===============================
-     TROCA DE SKILL
-  ============================== */
   const changeSkill = (index: number) => {
     if (index === selectedIndex || isSwitching) return;
 
-    playSkillSwitchSound(); // 🔊 som centralizado
-
+    playSkillSwitchSound();
     setIsSwitching(true);
 
     setTimeout(() => {
@@ -56,29 +47,29 @@ const PainelSkills: React.FC<PainelSkillsProps> = ({ items }) => {
 
   const goNext = () => {
     if (pageIndex < totalPages - 1) {
-      const nextPage = pageIndex + 1;
-      setPageIndex(nextPage);
-      changeSkill(nextPage * ITEMS_PER_PAGE);
+      const next = pageIndex + 1;
+      setPageIndex(next);
+      changeSkill(next * ITEMS_PER_PAGE);
     }
   };
 
   const goPrev = () => {
     if (pageIndex > 0) {
-      const prevPage = pageIndex - 1;
-      setPageIndex(prevPage);
-      changeSkill(prevPage * ITEMS_PER_PAGE);
+      const prev = pageIndex - 1;
+      setPageIndex(prev);
+      changeSkill(prev * ITEMS_PER_PAGE);
     }
   };
 
   return (
     <div className="painel-skills">
-      {/* ================= CARROSSEL ================= */}
       <div className="skills-carousel">
         <button
-          className="nav-arros-skiils"
+          className="nav-arros-skiils left"
           onClick={goPrev}
           disabled={pageIndex === 0 || isSwitching}
           type="button"
+          aria-label="Skills anteriores"
         >
           <FaChevronLeft />
         </button>
@@ -101,21 +92,17 @@ const PainelSkills: React.FC<PainelSkillsProps> = ({ items }) => {
         })}
 
         <button
-          className="nav-arros-skiils"
+          className="nav-arros-skiils right"
           onClick={goNext}
           disabled={pageIndex === totalPages - 1 || isSwitching}
           type="button"
+          aria-label="Próximas skills"
         >
           <FaChevronRight />
         </button>
       </div>
 
-      {/* ================= DETALHES ================= */}
-      <div
-        className={`skill-details ${
-          isSwitching ? "fade-out" : "fade-in"
-        }`}
-      >
+      <div className={`skill-details ${isSwitching ? "fade-out" : "fade-in"}`}>
         <h2>{selected.titulo}</h2>
         <p>{selected.description}</p>
       </div>

@@ -12,15 +12,16 @@
    CARROSSEL
 ========================================================= */
 .skills-carousel {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin: 30px 0;
+  margin: 32px 0;
 }
 
 /* =========================================================
-   BOTÃO DE SKILL
+   BOTÕES DE SKILL — BASE
 ========================================================= */
 .skill-icon-button {
   width: 64px;
@@ -32,81 +33,104 @@
 
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-
-  cursor: pointer;
+  border-radius: 14px;
 
   font-size: 28px;
   color: #e6e6e6;
 
+  cursor: pointer;
+
   transition:
-    transform 0.25s ease,
     background 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.skill-icon-button:hover {
-  transform: scale(1.12);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 12px rgba(100, 180, 255, 0.25);
-}
-
-.skill-icon-button:focus {
-  outline: none;
+    box-shadow 0.25s ease,
+    filter 0.25s ease,
+    transform 0.25s ease;
 }
 
 /* =========================================================
-   SETAS
+   DESKTOP — HOVER COM MOVIMENTO + BRILHO
+========================================================= */
+@media (hover: hover) and (pointer: fine) {
+  .skill-icon-button:hover {
+    transform: scale(1.12);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 0 14px rgba(100, 180, 255, 0.28),
+      0 0 28px rgba(100, 180, 255, 0.18);
+    filter: brightness(1.15);
+  }
+}
+
+/* =========================================================
+   TOUCH (TABLET + MOBILE) — SEM MOVIMENTO, BRILHO FORTE
+========================================================= */
+@media (hover: none) and (pointer: coarse) {
+  .skill-icon-button:active {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 0 18px rgba(120, 200, 255, 0.45),
+      0 0 36px rgba(120, 200, 255, 0.25);
+    filter: brightness(1.25);
+    transform: none; /* garante zero deslocamento */
+  }
+}
+
+/* =========================================================
+   SETAS — BASE
 ========================================================= */
 .nav-arros-skiils {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+
+  color: #ffffff;
+
+  width: 44px;
+  height: 44px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 22px;
-  padding: 6px;
-  background: transparent;
-  border: none;
-
-  color: #9aa0a6;
   cursor: pointer;
 
   transition:
-    color 0.2s ease,
-    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
     opacity 0.2s ease;
 }
 
-.nav-arros-skiils:hover {
-  color: #ffffff;
-  transform: scale(1.15);
+.nav-arros-skiils:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 
-.nav-arros-skiils:disabled {
-  opacity: 0.3;
-  cursor: default;
-  transform: none;
+/* Hover das setas só desktop */
+@media (hover: hover) and (pointer: fine) {
+  .nav-arros-skiils:hover {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 14px rgba(120, 200, 255, 0.25);
+  }
 }
+
 /* =========================================================
-   DETALHES — ESTADOS DE TRANSIÇÃO
+   DETALHES DA SKILL
 ========================================================= */
 .skill-details {
   text-align: center;
   will-change: opacity, transform, filter;
 }
 
-/* ENTRADA */
 .skill-details.fade-in {
   animation: skillFadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* SAÍDA */
 .skill-details.fade-out {
   animation: skillFadeOut 0.14s ease-in forwards;
 }
 
 /* =========================================================
-   KEYFRAMES
+   ANIMAÇÕES
 ========================================================= */
 @keyframes skillFadeIn {
   from {
@@ -122,11 +146,6 @@
 }
 
 @keyframes skillFadeOut {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
   to {
     opacity: 0;
     transform: translateY(-6px) scale(0.98);
@@ -135,51 +154,12 @@
 }
 
 /* =========================================================
-   MOBILE — EMPILHAMENTO CORRETO
-========================================================= */
-@media (max-width: 768px) {
-
-  .painel-skills {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* BOTÕES PRIMEIRO */
-  .skills-carousel {
-    order: 1;
-    margin-bottom: 20px;
-  }
-
-  /* DETALHES DEPOIS */
-  .skill-details {
-    order: 2;
-    width: 100%;
-  }
-
-  .skill-icon-button {
-    width: 52px;
-    height: 52px;
-    font-size: 1.3rem;
-  }
-
-  .skill-details h2 {
-    font-size: 1.25rem;
-  }
-
-  .skill-details p {
-    font-size: 1rem;
-  }
-}
-
-
-/* =========================================================
    TABLET (768px – 1199px)
 ========================================================= */
 @media (min-width: 768px) and (max-width: 1199px) {
 
   .skills-carousel {
-    gap: 20px;
-    margin: 36px 0;
+    width: 26rem;
   }
 
   .skill-icon-button {
@@ -189,62 +169,48 @@
   }
 
   .nav-arros-skiils {
-    font-size: 26px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
-  .skill-details {
-    max-width: 620px;
+  .nav-arros-skiils.left {
+    left: -56px;
   }
 
-  .skill-details h2 {
-    font-size: 1.6rem;
-  }
-
-  .skill-details p {
-    font-size: 1.15rem;
-    line-height: 1.6;
+  .nav-arros-skiils.right {
+    right: -56px;
   }
 }
-
 
 /* =========================================================
    MOBILE (≤ 767px)
 ========================================================= */
 @media (max-width: 767px) {
 
-  .painel-skills {
-    flex-direction: column;
-    align-items: center;
-  }
-
   .skills-carousel {
-    order: 1;
-    gap: 14px;
-    margin-bottom: 24px;
-  }
-
-  .skill-details {
-    order: 2;
-    width: 100%;
-    max-width: 90%;
+    width: 16rem;
   }
 
   .skill-icon-button {
-    width: 58px;
-    height: 58px;
-    font-size: 1.4rem;
+    width: 52px;
+    height: 52px;
+    font-size: 1.35rem;
   }
 
   .nav-arros-skiils {
-    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
   }
 
-  .skill-details h2 {
-    font-size: 1.4rem;
+  .nav-arros-skiils.left {
+    left: -62px;
   }
 
-  .skill-details p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+  .nav-arros-skiils.right {
+    right: -62px;
   }
 }

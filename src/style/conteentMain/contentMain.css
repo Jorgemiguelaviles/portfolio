@@ -214,7 +214,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10rem;
 
   text-align: center;
   position: relative;
@@ -500,10 +499,6 @@
   .container-main {
     width: 85vw;
     height: 55vh;
-  }
-
-  .panel-center {
-    padding: 6rem;
   }
 
   .panel-title {
