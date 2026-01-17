@@ -7,18 +7,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 16px; /* evita encostar nas bordas em mobile */
 }
 
 .audio-modal {
   background: linear-gradient(145deg, #0b1020, #121826);
-  border: 1px solid rgba(120,180,255,0.3);
+  border: 1px solid rgba(120, 180, 255, 0.3);
   border-radius: 12px;
   padding: 40px;
-  width: 90%;
+  width: 100%;
   max-width: 420px;
   text-align: center;
   color: #cbd7ff;
-  box-shadow: 0 0 40px rgba(120,180,255,0.15);
+  box-shadow: 0 0 40px rgba(120, 180, 255, 0.15);
+  margin: 2rem
 }
 
 .audio-modal h2 {
@@ -26,6 +28,7 @@
   margin-bottom: 16px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-size: clamp(1.4rem, 3vw, 1.7rem);
 }
 
 .audio-modal p {
@@ -33,4 +36,48 @@
   line-height: 1.6;
   margin-bottom: 28px;
   color: #cbd7ff;
+  padding: 0 8px;
+}
+
+/* Botões */
+.audio-modal .custom-button {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.audio-modal .custom-button:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+  .audio-modal {
+    padding: 32px;
+  }
+
+  .audio-modal p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .audio-modal {
+    padding: 24px 20px;
+    border-radius: 10px;
+  }
+
+  .audio-modal h2 {
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
+  }
+
+  .audio-modal p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .audio-modal .custom-button {
+    font-size: 0.95rem;
+    padding: 10px 14px;
+  }
 }
