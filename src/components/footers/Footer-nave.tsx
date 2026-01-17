@@ -8,41 +8,53 @@ interface FooterNaveProps {
 
 const FooterNave: React.FC<FooterNaveProps> = ({ mainPage }) => {
   return (
-    <motion.div
+    <motion.footer
       className="nave-panel-top"
       initial={false}
       animate={
         mainPage
-          ? { y: 140, opacity: 0 } // mainPage true → desce e some
-          : { y: 0, opacity: 1 }   // mainPage false → sobe e aparece
+          ? { y: 120, opacity: 0 }
+          : { y: 0, opacity: 1 }
       }
       transition={{
-        duration: 1.4,
-        ease: [0.16, 1, 0.3, 1], // desaceleração pesada (HUD-like)
+        duration: 1,
+        ease: [0.16, 1, 0.3, 1],
       }}
     >
       <div className="nave-panel-frame">
-        <span className="nave-indicator active" />
-        <span className="nave-indicator" />
-        <span className="nave-indicator" />
+        <div className="nave-indicators">
+          <span className="nave-indicator active" />
+          <span className="nave-indicator" />
+          <span className="nave-indicator" />
+        </div>
 
         <nav className="nave-panel-links">
-          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-            LINKEDIN
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
           </a>
-          <a href="https://github.com/Jorgemiguelaviles" target="_blank" rel="noreferrer">
-            GITHUB
+
+          <a
+            href="https://github.com/Jorgemiguelaviles"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
           </a>
+
           <a
             href="https://www.itau.com.br/carreiras"
             target="_blank"
             rel="noreferrer"
           >
-            ITAÚ SYSTEMS
+            Itaú Systems
           </a>
         </nav>
       </div>
-    </motion.div>
+    </motion.footer>
   );
 };
 
