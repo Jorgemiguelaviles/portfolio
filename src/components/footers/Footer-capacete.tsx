@@ -11,7 +11,7 @@ const FooterCapacete: React.FC<FooterProps> = ({ mainPage }) => {
     <motion.footer
       className="capacete-footer"
       initial={{ y: 0 }}                 // começa visível
-      animate={{ y: mainPage ? 0 : 150 }} // true = esconde | false = mostra
+      animate={{ y: mainPage ? 0 : 250 }} // true = esconde | false = mostra
       transition={{ duration: 1.2, ease: "easeInOut" }}
     >
       <div className="capacete-estrutura" />
