@@ -9,42 +9,109 @@ interface PortaFuturisticaProps {
   fundoUrl?: string;
   onConfirm?: () => void;
   backgroundGain?: Tone.Gain | null;
+  visible: boolean;
+  aberta:boolean;
+  setAberta: any;
+  rotacionando: boolean;
+  setRotacionando: any;
+  rotacaoAtual:number;
+  setRotacaoAtual:any;
+  zoomScale:number;
+  setZoomScale:any;
+  flashOpacity:number;
+  setFlashOpacity:any;
+  animando:boolean;
+  setAnimando:any
+  entradaOpacity:number;
+  setEntradaOpacity:any;
+  entradaScale:number;
+  setEntradaScale:any
+  mounted:boolean;
+  setMounted:any;
+
+
+
+
+
 }
+
+const FADE_DURATION = 800; // ms
 
 const PortaFuturistica: React.FC<PortaFuturisticaProps> = ({
   rotacao,
   fundoUrl,
   onConfirm,
   backgroundGain,
+  visible,
+  mounted,
+  setMounted,
+  aberta,
+  setAberta,
+  rotacionando, 
+  setRotacionando,
+  rotacaoAtual,
+  setRotacaoAtual,
+  zoomScale,
+  setZoomScale,
+  flashOpacity,
+  setFlashOpacity,
+  animando, 
+  setAnimando,
+  entradaOpacity,
+  setEntradaOpacity,
+  entradaScale,
+  setEntradaScale
+
+
 }) => {
-  const [aberta, setAberta] = useState(false);
-  const [rotacionando, setRotacionando] = useState(true);
-  const [rotacaoAtual, setRotacaoAtual] = useState(0);
 
-  const [zoomScale, setZoomScale] = useState(1);
-  const [flashOpacity, setFlashOpacity] = useState(0);
-  const [animando, setAnimando] = useState(false);
+  
+
+
 
   useEffect(() => {
-    if (!rotacao) return;
-    const abrirTimeout = setTimeout(() => setAberta(true), 4500);
+    if (visible) {
+      setMounted(true);
+
+      requestAnimationFrame(() => {
+        setEntradaOpacity(1);
+        setEntradaScale(1);
+      });
+    } else {
+      setEntradaOpacity(0);
+      setEntradaScale(0.95);
+
+      const t = setTimeout(() => {
+        setMounted(false);
+      }, FADE_DURATION);
+
+      return () => clearTimeout(t);
+    }
+  }, [visible]);
+
+  useEffect(() => {
+    if (!rotacao || !visible) return;
+
     const motorTimeout = setTimeout(() => setRotacionando(false), 3000);
+    const abrirTimeout = setTimeout(() => setAberta(true), 4500);
+
     return () => {
-      clearTimeout(abrirTimeout);
       clearTimeout(motorTimeout);
+      clearTimeout(abrirTimeout);
     };
-  }, [rotacao]);
+  }, [rotacao, visible]);
 
   useEffect(() => {
+    if (!rotacionando) return;
+
     let frame: number;
     let start: number | null = null;
 
-    const animate = (timestamp: number) => {
-      if (!start) start = timestamp;
-      const elapsed = timestamp - start;
-      const degrees = (elapsed / 1000) * 360;
-      setRotacaoAtual(degrees % 360);
-      if (rotacionando) frame = requestAnimationFrame(animate);
+    const animate = (time: number) => {
+      if (!start) start = time;
+      const elapsed = time - start;
+      setRotacaoAtual((elapsed / 1000) * 360 % 360);
+      frame = requestAnimationFrame(animate);
     };
 
     frame = requestAnimationFrame(animate);
@@ -55,66 +122,57 @@ const PortaFuturistica: React.FC<PortaFuturisticaProps> = ({
     const offsetX = aberta ? (lado === "left" ? "-1000%" : "1000%") : "0";
     return {
       transform: `translateY(-50%) translateX(${offsetX}) rotate(${rotacaoAtual}deg)`,
+      transition: "transform 1s ease-in-out",
     };
   };
 
   const handleConfirm = () => {
-    if (animando) return; // evita disparos múltiplos
+    if (animando) return;
     setAnimando(true);
 
-    // toca som imediatamente
     const audio = new Audio(hyperspaceSound);
     audio.volume = 0.5;
     audio.play().catch(() => {});
 
-    // sequencia do zoom + flash após 4s
     const sequence = async () => {
-      await new Promise((res) => setTimeout(res, 4000));
+      await new Promise((r) => setTimeout(r, 4000));
 
-      // silencia fundo se existir
       if (backgroundGain) {
         const now = Tone.now();
         backgroundGain.gain.cancelScheduledValues(now);
         backgroundGain.gain.linearRampToValueAtTime(0, now + 1.2);
       }
 
-      // dispara zoom + flash em 1,5s
       const duration = 1500;
-      const startTime = performance.now();
+      const start = performance.now();
 
-      const animateZoomFlash = (time: number) => {
-        const elapsed = time - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-
+      const animate = (t: number) => {
+        const progress = Math.min((t - start) / duration, 1);
         setZoomScale(1 + progress * 1.5);
         setFlashOpacity(progress);
-
-        if (progress < 1) {
-          requestAnimationFrame(animateZoomFlash);
-        }
+        if (progress < 1) requestAnimationFrame(animate);
       };
 
-      requestAnimationFrame(animateZoomFlash);
-
-      // espera 6s antes de chamar callback final
-      await new Promise((res) => setTimeout(res, 6000));
-
-      if (onConfirm) onConfirm();
+      requestAnimationFrame(animate);
+      await new Promise((r) => setTimeout(r, 6000));
+      onConfirm?.();
     };
 
     sequence();
   };
 
+  if (!mounted) return null;
+
   return (
     <div
-      className={`portaFut_container ${rotacao ? "portaFut_visible" : ""}`}
+      className="portaFut_container"
       style={{
         backgroundImage: `url(${fundoUrl || fundoImg})`,
-        transform: `scale(${zoomScale})`,
-        transition: "transform 0.05s linear",
+        opacity: entradaOpacity,
+        transform: `scale(${zoomScale * entradaScale})`,
+        transition: `opacity ${FADE_DURATION}ms ease, transform 0.2s linear`,
       }}
     >
-      {/* flash branco */}
       {animando && (
         <div
           style={{
@@ -127,11 +185,9 @@ const PortaFuturistica: React.FC<PortaFuturisticaProps> = ({
         />
       )}
 
-      {/* motores */}
       <div className="portaFut_motor portaFut_motor-left" style={motorStyle("left")} />
       <div className="portaFut_motor portaFut_motor-right" style={motorStyle("right")} />
 
-      {/* portas */}
       <div className={`portaFut_porta portaFut_porta-left ${aberta ? "portaFut_aberta" : ""}`}>
         <div className="portaFut_porta-inner-left" />
       </div>
@@ -139,7 +195,6 @@ const PortaFuturistica: React.FC<PortaFuturisticaProps> = ({
         <div className="portaFut_porta-inner-right" />
       </div>
 
-      {/* botão */}
       {aberta && (
         <button className="portaFut_button" onClick={handleConfirm}>
           Confirmar viagem

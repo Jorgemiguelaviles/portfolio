@@ -9,9 +9,10 @@ interface HeaderNaveProps {
   mainPage: boolean;
   setMainPage: any;
   setRotacao: any;
+  setVisible:any
 }
 
-const HeaderNave: React.FC<HeaderNaveProps> = ({ mainPage, setMainPage, setRotacao }) => {
+const HeaderNave: React.FC<HeaderNaveProps> = ({ mainPage, setMainPage, setRotacao,setVisible }) => {
   const playSkillSwitchSound = () => {
     const audio = new Audio(skillSwitchSound);
     audio.volume = 0.45;
@@ -46,8 +47,9 @@ const HeaderNave: React.FC<HeaderNaveProps> = ({ mainPage, setMainPage, setRotac
             className="nave-button"
             onClick={() => {
               playSkillSwitchSound();
-              setMainPage(true); // aqui a animação de sumir vai funcionar
+              setMainPage(true);
               setRotacao(true);
+              setVisible(true)
             }}
           >
             PRINCIPAL

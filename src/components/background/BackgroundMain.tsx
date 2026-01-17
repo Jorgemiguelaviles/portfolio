@@ -5,32 +5,29 @@ import "../../style/iniciation.css";
 
 interface BackgroundProps {
   data: any;
-  isZoomOut: boolean;
+  zoomEffect?: "zoomOut" | "zoomIn" | "none";
   isLoading: boolean;
   titleText: string;
   handleExploreClick: () => void;
   mainPage: boolean;
-  onZoomStart: () => void; // 🔑 callback para silenciar o fundo
+  onZoomStart: () => void;
 }
 
 const IMAGE_TIMEOUT = 6000;
 
 const Background: React.FC<BackgroundProps> = ({
   data,
-  isZoomOut,
+  zoomEffect = "none",
   isLoading,
   titleText,
   handleExploreClick,
   mainPage,
-  onZoomStart,
+  onZoomStart
 }) => {
   const [imageReady, setImageReady] = useState(false);
   const [forceStopLoading, setForceStopLoading] = useState(false);
-  const [zoomTriggered, setZoomTriggered] = useState(false);
 
-  /* ===============================
-     CONTROLE ROBUSTO DA IMAGEM
-  ============================== */
+  // Carregamento robusto da imagem
   useEffect(() => {
     if (!data || data.media_type !== "image") {
       setImageReady(true);
@@ -44,12 +41,10 @@ const Background: React.FC<BackgroundProps> = ({
     }, IMAGE_TIMEOUT);
 
     img.src = data.hdurl || data.url;
-
     img.onload = () => {
       clearTimeout(timeout);
       setImageReady(true);
     };
-
     img.onerror = () => {
       clearTimeout(timeout);
       setImageReady(true);
@@ -59,29 +54,13 @@ const Background: React.FC<BackgroundProps> = ({
     return () => clearTimeout(timeout);
   }, [data]);
 
-  /* ===============================
-     DISPARO ÚNICO DO SILÊNCIO
-  ============================== */
-  useEffect(() => {
-    if (isZoomOut && !zoomTriggered) {
-      setZoomTriggered(true);
-      onZoomStart(); // 🔇 silencia apenas o fundo
-    }
-
-    if (!isZoomOut) {
-      setZoomTriggered(false); 
-    }
-  }, [isZoomOut, zoomTriggered, onZoomStart]);
-
-  const shouldShowLoader =
-    !forceStopLoading &&
-    isLoading &&
-    !imageReady;
+  const shouldShowLoader = !forceStopLoading && isLoading && !imageReady;
 
   return (
-    <AnimatePresence>
-      {mainPage && (
+    <AnimatePresence mode="wait">
+      {mainPage && zoomEffect !== "zoomOut" && (
         <motion.section
+          key={zoomEffect}
           className="start"
           style={{
             backgroundImage:
@@ -89,39 +68,35 @@ const Background: React.FC<BackgroundProps> = ({
                 ? `url(${data.hdurl || data.url})`
                 : `url(${defaultBackground})`,
           }}
-          initial={{ opacity: 1, scale: 1 }}
-          animate={
-            isZoomOut
+          initial={
+            zoomEffect === "zoomIn"
               ? { scale: 10, opacity: 0 }
               : { scale: 1, opacity: 1 }
           }
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{
-            duration: isZoomOut ? 5.7 : 0.8,
-            ease: "easeInOut",
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 10, opacity: 0 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          onAnimationStart={() => {
+            if (zoomEffect === "zoomOut") {
+              onZoomStart();
+            }
           }}
         >
           <div className="background-section">
             <div className="gradient-overlay" />
-
             <div className="text-layer">
               <h1 className="typing-effect">{titleText}</h1>
 
               {shouldShowLoader && (
                 <div className="loader-container">
                   <div className="cosmic-loader" />
-                  <p className="loading-text">
-                    Sincronizando dados cósmicos…
-                  </p>
+                  <p className="loading-text">Sincronizando dados cósmicos…</p>
                 </div>
               )}
 
-              {!shouldShowLoader && !isZoomOut && (
+              {!shouldShowLoader && (zoomEffect === "none" || zoomEffect === "zoomIn") && (
                 <div className="button-layer">
-                  <button
-                    className="custom-button"
-                    onClick={handleExploreClick}
-                  >
+                  <button className="custom-button" onClick={handleExploreClick}>
                     Explorar
                   </button>
                 </div>

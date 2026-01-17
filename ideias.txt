@@ -1,3 +1,1 @@
-- ajustar botão header principal
-- ajustar transições de som (1h)
-- atualizar iu caddê você
+- zoom out retornando ao estado inicial

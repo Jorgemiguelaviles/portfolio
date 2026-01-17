@@ -3,20 +3,19 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../../style/conteentMain/contentMain.css";
 
-import Projects from "../projects/Projects";
 import SkillsSection from "../skills/Skills";
 import SectionBioSection from "../biografia/SectionBio";
 
 // sons
 import panelPowerOnSound from "../../assets/audio/telaInicial.mp3";
-import panelSwitchSound from "../../assets/audio/changeScreenSound.mp3"; // 🔊 som das setas
+import panelSwitchSound from "../../assets/audio/changeScreenSound.mp3";
 
 interface ContenteMainProps {
   mainPage: boolean;
   rotacao: boolean;
 }
 
-const PANELS = ["skills", "bio", "projects"] as const;
+const PANELS = ["skills", "bio"] as const;
 type PanelType = typeof PANELS[number];
 
 const ContenteMain: React.FC<ContenteMainProps> = ({ mainPage, rotacao }) => {
@@ -29,12 +28,10 @@ const ContenteMain: React.FC<ContenteMainProps> = ({ mainPage, rotacao }) => {
 
   const panelIndex = PANELS.indexOf(painel);
 
-  const showLeftArrow = painel !== "skills";
-  const showRightArrow = painel !== "projects";
+  // setas corretas para 2 painéis
+  const showLeftArrow = painel === "bio";
+  const showRightArrow = painel === "skills";
 
-  /* ===============================
-     SOM DAS SETAS
-  ============================== */
   const playPanelSwitchSound = () => {
     const audio = new Audio(panelSwitchSound);
     audio.volume = 0.45;
@@ -47,7 +44,6 @@ const ContenteMain: React.FC<ContenteMainProps> = ({ mainPage, rotacao }) => {
   useEffect(() => {
     if (!mainPage) {
       const entryTimer = setTimeout(() => {
-        // 🔊 SOM DE LIGAÇÃO DO PAINEL
         if (!soundPlayed) {
           const audio = new Audio(panelPowerOnSound);
           audio.volume = 0.6;
@@ -55,7 +51,6 @@ const ContenteMain: React.FC<ContenteMainProps> = ({ mainPage, rotacao }) => {
           setSoundPlayed(true);
         }
 
-        // 🎬 ANIMAÇÃO PRINCIPAL (+2s)
         setTimeout(async () => {
           await controls.start({
             opacity: 1,
@@ -75,22 +70,16 @@ const ContenteMain: React.FC<ContenteMainProps> = ({ mainPage, rotacao }) => {
   }, [mainPage, controls, soundPlayed]);
 
   /* ===============================
-     TROCA DE PAINEL (COM SOM)
+     TROCA DE PAINEL
   ============================== */
   const switchPanel = (next: PanelType) => {
     if (switching) return;
 
-    playPanelSwitchSound(); // 🔊 som sempre que troca
-
+    playPanelSwitchSound();
     setSwitching(true);
 
-    setTimeout(() => {
-      setPainel(next);
-    }, 500);
-
-    setTimeout(() => {
-      setSwitching(false);
-    }, 1000);
+    setTimeout(() => setPainel(next), 500);
+    setTimeout(() => setSwitching(false), 1000);
   };
 
   const handleNext = () => {
@@ -107,7 +96,7 @@ const ContenteMain: React.FC<ContenteMainProps> = ({ mainPage, rotacao }) => {
 
   return (
     <AnimatePresence mode="wait">
-      {(!mainPage && !rotacao) && (
+      {!mainPage && !rotacao && (
         <motion.section
           className="new-section"
           animate={controls}
@@ -136,10 +125,6 @@ const ContenteMain: React.FC<ContenteMainProps> = ({ mainPage, rotacao }) => {
 
                 <div className="panel-content skills">
                   <SkillsSection />
-                </div>
-
-                <div className="panel-content projects">
-                  <Projects />
                 </div>
 
                 {showLeftArrow && (

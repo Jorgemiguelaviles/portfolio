@@ -75,8 +75,8 @@
     inset 0 0 18px rgba(120, 220, 255, 0.45);
 }
 
-.nav-arrow.left { left: 20px; }
-.nav-arrow.right { right: 20px; }
+.nav-arrow.left { left: 45px; }
+.nav-arrow.right { right: 45px; }
 
 /* ================= SEÇÃO PRINCIPAL ================= */
 .new-section {
@@ -103,7 +103,6 @@
   justify-content: space-between;
   align-items: center;
 
-  width: 80vw;
   height: 80vh;
   max-width: 1300x;
   max-height: 800px;
@@ -215,7 +214,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 10rem;
 
   text-align: center;
   position: relative;
@@ -401,39 +400,45 @@
 
   /* ===== SETAS — MOBILE MODE ===== */
   .nav-arrow {
-    position: fixed;
-    bottom: 18px;
-    top: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 
-    transform: none;
+  font-size: 2.5rem;
+  color: var(--holo-cyan);
 
-    font-size: 1.9rem;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 40, 80, 0.8),
+    rgba(0, 10, 30, 0.9)
+  );
 
-    padding: 0.45rem 0.65rem;
+  border: 1px solid var(--holo-blue);
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
 
-    z-index: 30;
-  }
+  cursor: pointer;
+  z-index: 10;
 
-  .nav-arrow.left {
-    left: 20%;
-  }
+  box-shadow:
+    0 0 12px rgba(120, 200, 255, 0.6),
+    inset 0 0 12px rgba(120, 200, 255, 0.25);
 
-  .nav-arrow.right {
-    right: 20%;
-  }
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
 
-  .nav-arrow:hover {
-    transform: scale(1.15);
-  }
+.nav-arrow:hover {
+  transform: translateY(-50%) scale(1.2);
+}
 
-  /* ===== SCANLINES SUAVIZADAS ===== */
-  .ship-panel::before {
-    opacity: 0.3;
-  }
+.nav-arrow.left {
+  left: -60px; /* fora do painel, mas ancorada nele */
+}
 
-  .ship-panel::after {
-    opacity: 0.18;
-  }
+.nav-arrow.right {
+  right: -60px;
+}
+
 }
 
 /* =========================================================
@@ -464,10 +469,10 @@
   }
 
   .nav-arrow.left {
-    left: 12%;
+    left: 5%;
   }
 
   .nav-arrow.right {
-    right: 12%;
+    right: 5%;
   }
 }
