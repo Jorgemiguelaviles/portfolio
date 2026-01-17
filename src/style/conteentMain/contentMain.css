@@ -90,11 +90,13 @@
 .nav-arrow.right { right: 45px; }
 
 
+
 @media (max-width: 1199px) {
 
+  
   .nav-arrow {
     position: absolute;
-    top: 16px;
+    top: 5px;
     transform: none;
 
     font-size: 2.1rem;
