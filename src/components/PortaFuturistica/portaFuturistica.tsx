@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import fundoImg from "../../assets/imgs/base-intergalatica-fundo.png";
 import "../../style/portaFundo/portaFundo.css";
 import hyperspaceSound from "../../assets/audio/hiperespaco.mp3";

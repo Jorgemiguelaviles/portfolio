@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import jorgetech from "../../assets/imgs/jorgetech.png";
 import "../../style/headers/header-capacete.css";
 
@@ -9,7 +8,6 @@ interface HeaderProps {
 }
 
 const HeaderCapacete: React.FC<HeaderProps> = ({ mainPage }) => {
-  const navigate = useNavigate();
 
   return (
     <motion.header

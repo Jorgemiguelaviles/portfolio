@@ -21,8 +21,7 @@ const Background: React.FC<BackgroundProps> = ({
   isLoading,
   titleText,
   handleExploreClick,
-  mainPage,
-  onZoomStart
+  mainPage
 }) => {
   const [imageReady, setImageReady] = useState(false);
   const [forceStopLoading, setForceStopLoading] = useState(false);
@@ -76,11 +75,6 @@ const Background: React.FC<BackgroundProps> = ({
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 10, opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          onAnimationStart={() => {
-            if (zoomEffect === "zoomOut") {
-              onZoomStart();
-            }
-          }}
         >
           <div className="background-section">
             <div className="gradient-overlay" />

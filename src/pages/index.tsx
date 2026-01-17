@@ -19,7 +19,10 @@ const SectionStart: React.FC = () => {
   const { data, error } = useDailyApod();
 
   // Estados de controle
-  const [zoomEffect, setZoomEffect] = useState<"zoomOut" | "zoomIn" | "none">("none");
+  type ZoomEffect = "zoomIn" | "zoomOut" | "none";
+
+  const [zoomEffect, setZoomEffect] =
+    useState<ZoomEffect>("none");
   const [audioUnlocked, setAudioUnlocked] = useState<boolean | null>(null);
   const [backgroundGain, setBackgroundGain] = useState<Tone.Gain | null>(null);
   const [transicao, setTransicao] = useState(true);
@@ -87,10 +90,6 @@ const SectionStart: React.FC = () => {
     setPageTransitionSoundPlayed(true);
   };
 
-  const triggerZoomOutEffect = () => {
-    setZoomEffect("zoomOut");
-    setTimeout(() => setZoomEffect("none"), 5700); 
-  };
 
   const handleExploreClick = async () => {
     fadeOutBackgroundSound();
