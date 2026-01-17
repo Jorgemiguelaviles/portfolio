@@ -1,4 +1,5 @@
 /* ================= HEADER NAVE ================= */
+
 .nave-hud {
   position: fixed;
   top: 0;
@@ -18,14 +19,15 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Estrutura interna */
+/* Estrutura */
 .nave-frame {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 14px 32px;
 }
 
-/* Indicadores de sistema */
+/* Indicadores */
 .nave-status {
   display: flex;
   gap: 10px;
@@ -44,7 +46,7 @@
   box-shadow: 0 0 12px rgba(76, 201, 240, 0.9);
 }
 
-/* Logotipo */
+/* Logo */
 .nave-logo {
   height: 42px;
   filter:
@@ -52,13 +54,13 @@
     drop-shadow(0 0 18px rgba(76, 201, 240, 0.25));
 }
 
-/* Controles */
+/* Controles desktop */
 .nave-controls {
   display: flex;
   gap: 2rem;
 }
 
-/* Botões da nave */
+/* Botões */
 .nave-button {
   background: rgba(140, 80, 255, 0.14);
   border: 1.5px solid rgba(200, 160, 255, 0.55);
@@ -76,7 +78,7 @@
     inset 0 0 10px rgba(160, 90, 255, 0.35),
     0 0 12px rgba(120, 60, 255, 0.25);
 
-  transition: all 0.35s ease;
+  transition: all 0.3s ease;
 }
 
 .nave-button:hover {
@@ -87,37 +89,81 @@
   transform: translateY(-1px);
 }
 
-.nave-button:active {
-  transform: translateY(1px);
+/* ================= MENU COLAPSÁVEL (TABLET + MOBILE) ================= */
+
+.nave-menu-toggle {
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  color: #e6f6ff;
+  cursor: pointer;
 }
 
+.nave-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 
-.portal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: black;
-  overflow: hidden;
+  padding: 16px 0;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(76, 201, 240, 0.12),
+    rgba(10, 15, 25, 0.95)
+  );
+
+  box-shadow: inset 0 0 20px rgba(76, 201, 240, 0.35);
 }
 
-.portal-door {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  background: radial-gradient(circle at center, #111, #000);
+.nave-button.mobile {
+  width: 85%;
+  max-width: 320px;
+  text-align: center;
 }
 
-.portal-door.left {
-  left: 0;
+/* ================= VISIBILIDADE POR BREAKPOINT ================= */
+
+/* Desktop */
+.desktop-only {
+  display: flex;
 }
 
-.portal-door.right {
-  right: 0;
+.mobile-only {
+  display: none;
 }
 
-.portal-zoom {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, #222, #000);
+/* Tablet + Mobile */
+@media (max-width: 1023px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .nave-frame {
+    padding: 12px 22px;
+  }
+
+  .nave-logo {
+    height: 38px;
+  }
+}
+
+/* Mobile fino */
+@media (max-width: 767px) {
+  .nave-frame {
+    padding: 12px 18px;
+  }
+
+  .nave-logo {
+    height: 34px;
+  }
+
+  .nave-button.mobile {
+    font-size: 0.7rem;
+    padding: 0.65rem 1rem;
+  }
 }
