@@ -1,5 +1,5 @@
 import "../../style/footers/footer-nave.css";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 interface FooterNaveProps {
@@ -7,9 +7,11 @@ interface FooterNaveProps {
 }
 
 const FooterNave: React.FC<FooterNaveProps> = ({ mainPage }) => {
+  const [openMobile, setOpenMobile] = useState(false);
+
   return (
     <motion.footer
-      className="nave-panel-top"
+      className={`nave-panel-top ${openMobile ? "mobile-open" : ""}`}
       initial={false}
       animate={
         mainPage
@@ -21,7 +23,28 @@ const FooterNave: React.FC<FooterNaveProps> = ({ mainPage }) => {
         ease: [0.16, 1, 0.3, 1],
       }}
     >
-      <div className="nave-panel-frame">
+      {/* HANDLE MOBILE / TABLET */}
+      <button
+        className="nave-handle"
+        onClick={() => setOpenMobile((prev) => !prev)}
+        aria-label="Abrir painel da nave"
+      >
+        <span className="nave-handle-bar" />
+        <span className="nave-handle-bar" />
+        <span className="nave-handle-bar" />
+      </button>
+
+      <motion.div
+        className="nave-panel-frame"
+        animate={{
+          y: openMobile ? 0 : 160,
+          opacity: openMobile ? 1 : 0,
+        }}
+        transition={{
+          duration: 0.5,
+          ease: "easeInOut",
+        }}
+      >
         <div className="nave-indicators">
           <span className="nave-indicator active" />
           <span className="nave-indicator" />
@@ -53,7 +76,7 @@ const FooterNave: React.FC<FooterNaveProps> = ({ mainPage }) => {
             Itaú Systems
           </a>
         </nav>
-      </div>
+      </motion.div>
     </motion.footer>
   );
 };

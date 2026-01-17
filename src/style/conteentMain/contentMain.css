@@ -90,17 +90,24 @@
 .nav-arrow.right { right: 45px; }
 
 
+/* =========================================================
+   MOBILE — SETAS COMO HANDLES LATERAIS DE NAVEGAÇÃO
+========================================================= */
+@media (max-width: 767px) {
 
-@media (max-width: 1199px) {
-
-  
   .nav-arrow {
-    position: absolute;
-    top: 5px;
-    transform: none;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
 
-    font-size: 2.1rem;
-    padding: 0.4rem 0.7rem;
+    width: 44px;
+    height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.8rem;
 
     background: linear-gradient(
       180deg,
@@ -108,42 +115,41 @@
       rgba(0, 15, 40, 0.95)
     );
 
-    box-shadow:
-      0 0 14px rgba(120, 200, 255, 0.55),
-      inset 0 0 10px rgba(120, 200, 255, 0.3);
-  }
-
-  .nav-arrow.left {
-    left: 16px;
-  }
-
-  .nav-arrow.right {
-    right: 16px;
-  }
-}
-
-
-@media (max-width: 767px) {
-
-  .nav-arrow {
-    top: 5px;
-    font-size: 1.9rem;
-
-    padding: 0.35rem 0.65rem;
-
-    border-radius: 8px;
+    border: 1px solid rgba(120, 200, 255, 0.6);
 
     box-shadow:
-      0 0 10px rgba(120, 200, 255, 0.6),
-      inset 0 0 8px rgba(120, 200, 255, 0.35);
+      0 0 18px rgba(120, 200, 255, 0.65),
+      inset 0 0 14px rgba(120, 200, 255, 0.35);
+
+    backdrop-filter: blur(6px);
+
+    cursor: pointer;
+    z-index: 50;
+
+    transition:
+      box-shadow 0.25s ease,
+      filter 0.2s ease,
+      transform 0.2s ease;
   }
 
+  /* LADO ESQUERDO */
   .nav-arrow.left {
-    left: 14px;
+    left: 0;
+    border-radius: 0 14px 14px 0;
   }
 
+  /* LADO DIREITO */
   .nav-arrow.right {
-    right: 14px;
+    right: 0;
+    border-radius: 14px 0 0 14px;
+  }
+
+  /* FEEDBACK DE TOQUE */
+  .nav-arrow:active {
+    filter: brightness(1.25);
+    box-shadow:
+      0 0 26px rgba(120, 220, 255, 0.9),
+      inset 0 0 20px rgba(120, 220, 255, 0.55);
   }
 }
 

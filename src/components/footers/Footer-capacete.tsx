@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import "../../style/footers/footer-capacete.css";
 
@@ -7,16 +7,38 @@ interface FooterProps {
 }
 
 const FooterCapacete: React.FC<FooterProps> = ({ mainPage }) => {
+  const [openMobile, setOpenMobile] = useState(false);
+
   return (
     <motion.footer
-      className="capacete-footer"
-      initial={{ y: 0 }}                 // começa visível
-      animate={{ y: mainPage ? 0 : 250 }} // true = esconde | false = mostra
+      className={`capacete-footer ${openMobile ? "mobile-open" : ""}`}
+      initial={{ y: 0 }}
+      animate={{
+        y: mainPage ? 0 : 250,
+      }}
       transition={{ duration: 1.2, ease: "easeInOut" }}
     >
+      {/* HANDLE MOBILE */}
+      <button
+        className="capacete-handle"
+        onClick={() => setOpenMobile((prev) => !prev)}
+        aria-label="Abrir menu inferior"
+      >
+        <span className="capacete-handle-bar" />
+        <span className="capacete-handle-bar" />
+        <span className="capacete-handle-bar" />
+      </button>
+
       <div className="capacete-estrutura" />
 
-      <div className="capacete-painel">
+      <motion.div
+        className="capacete-painel"
+        animate={{
+          y: openMobile ? 0 : 200,
+          opacity: openMobile ? 1 : 0,
+        }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
         <motion.a
           href="https://www.linkedin.com/"
           target="_blank"
@@ -46,7 +68,7 @@ const FooterCapacete: React.FC<FooterProps> = ({ mainPage }) => {
         >
           Cadê Você · Itaú
         </motion.a>
-      </div>
+      </motion.div>
     </motion.footer>
   );
 };
