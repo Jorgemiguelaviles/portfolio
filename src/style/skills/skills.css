@@ -269,7 +269,7 @@
 @media (max-width: 767px) {
 
   .skills-panel-root {
-    padding: 0px 100px;
+    padding: 0px 0px;
   }
 
   .skills-panel-stage {
