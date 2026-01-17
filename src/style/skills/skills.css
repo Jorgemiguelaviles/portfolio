@@ -3,7 +3,7 @@
 ================================ */
 .skills-panel-root {
   width: 100%;
-  padding: 48px 110px;
+  padding: 0px 100px;
   box-sizing: border-box;
 }
 
@@ -222,7 +222,7 @@
 @media (min-width: 768px) and (max-width: 1199px) {
 
   .skills-panel-root {
-    padding: 42px 48px;
+    padding: 0px 100px;
   }
 
   .skills-panel-stage {
@@ -269,7 +269,7 @@
 @media (max-width: 767px) {
 
   .skills-panel-root {
-    padding: 32px 18px;
+    padding: 0px 100px;
   }
 
   .skills-panel-stage {

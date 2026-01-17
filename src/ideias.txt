@@ -1,3 +1,6 @@
-retirar a barra branca lateral no mobile/desktop/tablet
 colocar as setas de navegar na parte superior da tela no mobile
-diminuir os icones dos paineis njo tablet e mobile
+
+
+
+
+task 2 abrir o menu de navegação
