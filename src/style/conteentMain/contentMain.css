@@ -10,7 +10,7 @@
   width: 70vw;
   position: relative;
   overflow: hidden;
-  height: 50vh;        /* ocupa a altura da tela */
+  height: 25vh;        /* ocupa a altura da tela */
   overflow-y: auto;    /* permite deslizar no eixo Y */
   overflow-x: hidden;  /* evita scroll lateral indesejado */
 }

@@ -214,3 +214,97 @@
     margin-bottom: 16px;
   }
 }
+
+/* =========================================================
+   TABLET (768px – 1199px)
+========================================================= */
+@media (min-width: 768px) and (max-width: 1199px) {
+
+  .skills-panel-root {
+    padding: 42px 48px;
+  }
+
+  .skills-panel-stage {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    row-gap: 28px;
+  }
+
+  .skills-panel-buttons {
+    grid-column: 1;
+    grid-row: 1;
+
+    flex-direction: row;
+    justify-content: center;
+    gap: 24px;
+
+    padding: 20px;
+    border-left: none;
+    border-bottom: 3px solid rgba(120, 180, 255, 0.5);
+  }
+
+  .skills-panel-title {
+    width: 100%;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .skills-panel-button {
+    width: auto;
+    padding: 16px 22px;
+    font-size: 0.85rem;
+  }
+
+  .skills-panel-content {
+    padding: 28px;
+    min-height: 380px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE (≤ 767px)
+========================================================= */
+@media (max-width: 767px) {
+
+  .skills-panel-root {
+    padding: 32px 18px;
+  }
+
+  .skills-panel-stage {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  .skills-panel-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+
+    padding: 18px;
+    border-left: none;
+    border-bottom: 3px solid rgba(120, 180, 255, 0.5);
+  }
+
+  .skills-panel-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .skills-panel-button {
+    width: 95%;
+    padding: 16px;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .skills-panel-content {
+    padding: 20px;
+    min-height: 320px;
+  }
+
+  .skills-panel-soft,
+  .skills-panel-hard {
+    margin: 0;
+  }
+}
